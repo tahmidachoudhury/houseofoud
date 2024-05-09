@@ -4,11 +4,11 @@ import StarIcon from '@mui/icons-material/Star';
 
 function ReviewCard(props){
   return (
-    <Box width="412px" style={{padding: '50px'}}>
+    <Box style={{padding: '50px'}}>
 
       <Card style={{padding: "24px"}}>
 
-        <CardContent style={{minHeight: '140px'}}>
+        <CardContent style={{minHeight: '150px'}}>
 
           {[...Array(props.stars)].map(() => <StarIcon />)}
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import Hero from './Hero';
 import ReviewSection from './ReviewSectionFolder/ReviewSection';
-import Collection from './CollectionsFolder/Collection';
 import GroupProductSection from './CollectionsFolder/GroupCollections';
 
 
@@ -17,4 +16,4 @@ function App(){
   )
 }
 
-export default App
+export default App;
