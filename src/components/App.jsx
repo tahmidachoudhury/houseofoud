@@ -1,7 +1,8 @@
 import React from 'react';
 import Hero from './Hero';
-import ReviewCard from './ReviewCard';
-import ReviewSection from './ReviewSection';
+import ReviewSection from './ReviewSectionFolder/ReviewSection';
+import Collection from './CollectionsFolder/Collection';
+import GroupProductSection from './CollectionsFolder/GroupCollections';
 
 
 
@@ -9,7 +10,8 @@ function App(){
   return (
     <>
     <Hero />
-    <ReviewSection />    
+    <GroupProductSection />
+    <ReviewSection />
     </>
 
   )

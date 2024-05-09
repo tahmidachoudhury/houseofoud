@@ -1,6 +1,6 @@
 import React from 'react';
 import ReviewCard from './ReviewCard';
-import reviews from '../../data';
+import reviews from '../../../data';
 import Carousel from 'react-material-ui-carousel'
 import "./ReviewSection.css"
 
@@ -8,7 +8,7 @@ function ReviewSection(){
 
   return (
 
-  <div className="background-img" style={{padding: "48px 0"}}>
+  <div className="main" style={{padding: "48px 0"}}>
 
     <h2 style={{textAlign: "center"}}>A Collection of Reviews</h2>{/* title */}
 

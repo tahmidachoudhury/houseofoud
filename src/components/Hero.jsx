@@ -5,8 +5,8 @@ function Hero(){
     return (
         <div className="hero-container">
             <div>
-                <h1>Amazing Fragrances</h1>
-                <p>inspired by Arabian scents</p>                
+                <h1>House of Oud</h1>
+                <p>Amazing fragrances. Inspired by Arabian scents</p>                
             </div>
 
         </div>
