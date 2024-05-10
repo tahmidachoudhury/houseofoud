@@ -9,14 +9,17 @@ function Collection(props){
     backgroundImage: `url(${props.url})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    transition: '1.2s',
   };
 
   return (
 
     <div className="container">
 
-      <div style={containerStyle}></div>
-
+      <div className="img-container">
+        <div className="image" style={containerStyle}></div>
+      </div>
+      
       <div className="text">
         {props.text}
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReviewCard from './ReviewCard';
-import reviews from '../../../data';
+import reviews from './data';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import "./ReviewSection.css"
@@ -37,6 +37,7 @@ function ReviewSection(){
         containerClass="carousel-container"
         itemClass="carousel-item-padding-40-px"
         removeArrowOnDeviceType={["tablet", "mobile"]}
+        showDots={true}
     >
     
     {reviews.map((review, index) => {

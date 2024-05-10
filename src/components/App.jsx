@@ -1,7 +1,7 @@
 import React from 'react';
-import Hero from './Hero';
-import ReviewSection from './ReviewSectionFolder/ReviewSection';
-import GroupProductSection from './CollectionsFolder/GroupCollections';
+import Hero from './indexPage/Hero';
+import ReviewSection from './indexPage/ReviewSectionFolder/ReviewSection';
+import GroupProductSection from './indexPage/CollectionsFolder/GroupCollections';
 
 
 
