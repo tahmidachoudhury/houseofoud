@@ -1,9 +1,8 @@
 import React from 'react';
 import ReviewCard from './ReviewCard';
-import reviews from './data';
+import reviews from '../../data.js';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import "./ReviewSection.css"
 
 function ReviewSection(){
 
@@ -25,11 +24,17 @@ function ReviewSection(){
     }
   };
 
+  const main = {
+    padding: "48px 0",
+    backgroundImage: 'url("https://www.transparenttextures.com/patterns/brushed-alum.png")',
+    margin: '0',
+  }
+
   return (
 
-  <div className="main" style={{padding: "48px 0"}}>
+  <div style={main}>
 
-    <h2 style={{textAlign: "center"}}>A Collection of Reviews</h2>{/* title */}
+    <h2 style={{textAlign: "center"}}>A Collection of Reviews</h2>
 
     <Carousel
         responsive={responsive}
@@ -58,12 +63,3 @@ function ReviewSection(){
 
 
 export default ReviewSection;
-
-
-{/* <ReviewCard 
-key={index}
-stars={review.stars}
-subject={review.subject}
-content={review.content}
-name={review.name}
-/> */}

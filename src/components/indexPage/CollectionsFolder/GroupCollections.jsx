@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from '@mui/system/Unstable_Grid';
 import Collection from "./Collection";
-import "./Collections.css"
 
 
 
@@ -13,7 +12,7 @@ function GroupProductSection(){
         <Collection text='woody fragrances' url='bakhour.jpg' alt='oud in flower'/>
       </Grid>
 
-      <Grid item xs={12} p={1} lg={4} md={6}>
+      <Grid item xs={12} py={1} px={0.5} lg={4} md={6}>
         <Collection text='floral fragrances' url='floral.avif'/>
       </Grid>
 
