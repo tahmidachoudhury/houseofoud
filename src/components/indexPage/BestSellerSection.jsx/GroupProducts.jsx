@@ -1,6 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Product from "./Product";
+import Box from "@mui/system/Box"
 import BestSellingProducts from "./bestSellingData.js";
 
 
@@ -33,20 +34,21 @@ function BestSellingProductsSection(){
   return(
   <div>
     <h2 style={h2Style}>Best Sellers</h2>
-    <Carousel 
-      responsive={responsive}
-    >
-      {BestSellingProducts.map((product, index) => {
-        return <Product 
-          key={index}
-          url={product.url}
-          type={product.type}
-          name={product.name}
-          price={product.price}
-          size={product.size}
-        />
-      })}
-    </Carousel>
+    <Box px={1}>
+      <Carousel responsive={responsive} arrows={false}>
+        {BestSellingProducts.map((product, index) => {
+          return <Product 
+            key={index}
+            url={product.url}
+            type={product.type}
+            name={product.name}
+            price={product.price}
+            size={product.size}
+          />
+        })}
+      </Carousel>      
+    </Box>
+
   </div>
   
   )

@@ -10,7 +10,7 @@ function ReviewCard(props){
 
         <CardContent style={{minHeight: '150px'}}>
 
-          {[...Array(props.stars)].map(() => <StarIcon />)}
+          {[...Array(props.stars)].map((index) => <StarIcon key={index}/>)}
 
           <Typography gutterBottom variant='h7' component='div' style={{paddingBottom: '10px'}}>
           {props.subject}

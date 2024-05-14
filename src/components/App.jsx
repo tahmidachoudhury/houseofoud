@@ -3,16 +3,18 @@ import Hero from './indexPage/Hero';
 import ReviewSection from './indexPage/ReviewSectionFolder/ReviewSection';
 import GroupProductSection from './indexPage/CollectionsFolder/GroupCollections';
 import BestSellingProductsSection from './indexPage/BestSellerSection.jsx/GroupProducts';
+import Navbar from './indexPage/NavbarSection/Navbar';
 
 
 
 function App(){
   return (
     <>
-    <Hero />
-    <GroupProductSection />
-    <ReviewSection />
-    <BestSellingProductsSection />
+      <Navbar />
+      <Hero />
+      <GroupProductSection />
+      <ReviewSection />
+      <BestSellingProductsSection />
     </>
 
   )

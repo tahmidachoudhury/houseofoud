@@ -2,7 +2,7 @@ import React from 'react';
 import ReviewCard from './ReviewCard';
 import reviews from '../../data.js';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import 'react-multi-carousel/lib/styles.css'; 
 
 function ReviewSection(){
 
@@ -41,8 +41,11 @@ function ReviewSection(){
         swipeable={true}
         containerClass="carousel-container"
         itemClass="carousel-item-padding-40-px"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
+        arrows={false}
         showDots={true}
+        autoPlay={true}
+        infinite={true}
+        autoPlaySpeed={3000}
     >
     
     {reviews.map((review, index) => {
