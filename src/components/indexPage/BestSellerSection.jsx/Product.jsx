@@ -3,12 +3,15 @@ import Grid from '@mui/system/Unstable_Grid';
 import Box from '@mui/system/Box';
 import "./Product.css";
 import Typography from "@mui/material/Typography"
+import { height, minWidth } from "@mui/system";
 
 
 function Product(props){
   const cntrStyle = {
     width: 'auto',
     height: '500px',
+    minWidth: '200px',
+    minHeight: '200px',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundImage: `url(${props.url})`,

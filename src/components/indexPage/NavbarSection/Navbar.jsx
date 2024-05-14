@@ -1,8 +1,8 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -13,6 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
 import SearchIcon from '@mui/icons-material/Search';
@@ -23,7 +24,23 @@ const drawerWidth = 240;
 const navItems = ['Shop', 'Account', 'Liked', 'Cart'];
 const rightItems = ['Account', 'Liked', 'Cart'];
 
-function DrawerAppBar(props) {
+function HideOnScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+export default function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -54,14 +71,15 @@ function DrawerAppBar(props) {
   return (
     <Box>
       <CssBaseline />
-      <AppBar component="nav" sx={{ bgcolor: 'green' }}>
+      <HideOnScroll {...props}>
+      <AppBar component="nav" sx={{ bgcolor: '#575756' }}>
         <Toolbar sx={{display: 'flex'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ m: 0, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -78,7 +96,7 @@ function DrawerAppBar(props) {
           <IconButton 
             color="inherit"
             edge="start"
-            sx={{ mr: 2, display: { sm: 'none' } }}          
+            sx={{ m: 0, p: 0.75, display: { sm: 'none' } }}          
           >
             <SearchIcon />
           </IconButton>
@@ -102,7 +120,7 @@ function DrawerAppBar(props) {
           <IconButton 
             color="inherit"
             edge="start"
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ m: 0, p: 0.75, display: { sm: 'none' } }}
           >
             <FavoriteBorderIcon />
           </IconButton>
@@ -110,7 +128,7 @@ function DrawerAppBar(props) {
           <IconButton 
             color="inherit"
             edge="start"
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ m: 0, p: 0.75, display: { sm: 'none' } }}
           >
             <AccountCircleIcon />
           </IconButton>
@@ -118,13 +136,14 @@ function DrawerAppBar(props) {
           <IconButton 
             color="inherit"
             edge="start"
-            sx={{ mr: 2, display: { sm: 'none' } }}          
+            sx={{ m: 0, p: 0.75, display: { sm: 'none' } }}          
           >
             <ShoppingBagTwoToneIcon />
           </IconButton>
 
         </Toolbar>
       </AppBar>
+      </HideOnScroll>
       <nav>
         <Drawer
           container={container}
@@ -145,5 +164,3 @@ function DrawerAppBar(props) {
     </Box>
   );
 }
-
-export default DrawerAppBar;
