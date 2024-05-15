@@ -1,21 +1,21 @@
 import React from 'react';
-import Hero from './indexPage/Hero';
-import ReviewSection from './indexPage/ReviewSectionFolder/ReviewSection';
-import GroupProductSection from './indexPage/CollectionsFolder/GroupCollections';
-import BestSellingProductsSection from './indexPage/BestSellerSection.jsx/GroupProducts';
 import Navbar from './indexPage/NavbarSection/Navbar';
+import Footer from './indexPage/FooterSection/Footer';
+import Home from './indexPage/Home.jsx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 
 function App(){
   return (
-    <>
+    <Router>
       <Navbar />
-      <Hero />
-      <GroupProductSection />
-      <ReviewSection />
-      <BestSellingProductsSection />
-    </>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/shop" element={<Shop />} /> */}
+        </Routes>
+      <Footer />
+    </Router>
 
   )
 }

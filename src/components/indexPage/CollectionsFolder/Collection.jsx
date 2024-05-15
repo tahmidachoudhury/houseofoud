@@ -37,7 +37,7 @@ function Collection(props){
 
   return (
 
-    <div className="container">
+    <div >
 
       <div 
         style={imgContainer} 
