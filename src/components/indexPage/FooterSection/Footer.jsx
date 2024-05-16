@@ -166,7 +166,8 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="#"
+            href="https://www.tiktok.com/@houseofoudlondon"
+            target="_blank"
             aria-label="TikTok"
             sx={{ alignSelf: 'center' }}
           >
@@ -175,6 +176,7 @@ export default function Footer() {
           <IconButton
             color="inherit"
             href="#"
+            target="_blank"
             aria-label="X"
             sx={{ alignSelf: 'center' }}
           >
@@ -183,6 +185,7 @@ export default function Footer() {
           <IconButton
             color="inherit"
             href="https://www.instagram.com/houseofoudlondon?igsh=MWZ6NDhmZTczdTE2Mg=="
+            target="_blank"
             aria-label="Instagram"
             sx={{ alignSelf: 'center' }}
           >

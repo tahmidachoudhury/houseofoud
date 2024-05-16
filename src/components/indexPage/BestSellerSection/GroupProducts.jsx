@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Product from "./Product";
+import Product from "./Product.jsx";
 import Box from "@mui/system/Box"
 import BestSellingProducts from "./bestSellingData.js";
 

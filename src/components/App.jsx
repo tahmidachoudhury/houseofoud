@@ -3,6 +3,7 @@ import Navbar from './indexPage/NavbarSection/Navbar';
 import Footer from './indexPage/FooterSection/Footer';
 import Home from './indexPage/Home.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ShopPage from './ShopPage/ShopPage.jsx';
 
 
 
@@ -11,8 +12,8 @@ function App(){
     <Router>
       <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/shop" element={<Shop />} /> */}
+          <Route exact path="/" element={<Home />} />
+          <Route path="/shop" element={<ShopPage />} />
         </Routes>
       <Footer />
     </Router>

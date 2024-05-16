@@ -69,7 +69,7 @@ export default function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box>
+    <Box >
       <CssBaseline />
       <HideOnScroll {...props}>
       <AppBar component="nav" sx={{ bgcolor: '#575756' }}>

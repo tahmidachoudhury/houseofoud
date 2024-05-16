@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from './Hero';
 import ReviewSection from './ReviewSectionFolder/ReviewSection';
 import GroupProductSection from './CollectionsFolder/GroupCollections';
-import BestSellingProductsSection from './BestSellerSection.jsx/GroupProducts';
+import BestSellingProductsSection from './BestSellerSection/GroupProducts';
 
 function Home(){
   return (

@@ -1,24 +1,21 @@
 import React from "react";
 import Grid from '@mui/system/Unstable_Grid';
-import Box from '@mui/system/Box';
+import Box, { display } from '@mui/system/Box';
 import "./Product.css";
 import Typography from "@mui/material/Typography"
-import { height, minWidth } from "@mui/system";
 
 
 function Product(props){
   const cntrStyle = {
-    width: 'auto',
-    height: '500px',
-    minWidth: '200px',
-    minHeight: '200px',
+    width: '100%',
+    height: '100%',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundImage: `url(${props.url})`,
   };
 
   const productInfo = {
-    padding: "12px 0",
+    padding: "15px 0 ",
     borderTop: "2px solid black",
     borderBottom: "2px solid black",
     marginTop: "12px"
@@ -28,9 +25,7 @@ function Product(props){
 
     <Box p={1}>
 
-      <div className="image-container">
-        <div className='img' style={{...cntrStyle}}></div>
-      </div>
+      <div className="image-container" style={{...cntrStyle}} />
       
       <div style={productInfo}>
         <Typography gutterBottom>{props.type}</Typography>
