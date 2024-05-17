@@ -16,15 +16,15 @@ function ShopPage(){
         }}>
 
           {BestSellingProducts.map((product, index) => {
-            return <Box gridColumn={ {xs: 'span 1', sm: 'auto'} } width='100%' sx={{aspectRatio: 1}} key={index} > 
-            <Product 
-              key={index}
-              url={product.url}
-              type={product.type}
-              name={product.name}
-              price={product.price}
-              size={product.size}
-            />
+            return <Box gridColumn={ {xs: 'span 1', sm: 'auto'} } sx={{aspectRatio: '1/1'}} key={index} > 
+              <Product 
+                key={index}
+                url={product.url}
+                type={product.type}
+                name={product.name}
+                price={product.price}
+                size={product.size}
+              />
             </Box>
           })}
 

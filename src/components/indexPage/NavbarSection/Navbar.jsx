@@ -19,6 +19,7 @@ import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 const navItems = ['Shop', 'Account', 'Liked', 'Cart'];
@@ -88,8 +89,8 @@ export default function DrawerAppBar(props) {
 
           </Box>
           <Box sx={{ display: { xs: 'none', sm: 'block' }, flex: 1}}>
-            <Button key='Shop' sx={{ color: '#fff' }}>
-              Shop
+            <Button sx={{ color: '#fff' }}>
+              <Link to="/shop">Shop</Link>
             </Button>
           </Box>
 
@@ -101,13 +102,17 @@ export default function DrawerAppBar(props) {
             <SearchIcon />
           </IconButton>
 
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ display: { xs: 'block'}, flex: 1, textAlign: 'center' }}
-          >
-            House Of Oud
-          </Typography>
+          <Button sx={{ display: { xs: 'block'}, flex: 1, textAlign: 'center', color: "#fff" }}>
+            <Link to="/">
+              <Typography
+                variant="h6"
+                component="div"
+              >
+                House Of Oud
+              </Typography>
+            </Link>  
+          </Button>
+          
 
           <Box sx={{ display: { xs: 'none', sm: 'block' }, flex: 1, textAlign: 'right'}}>
             {rightItems.map((item) => (

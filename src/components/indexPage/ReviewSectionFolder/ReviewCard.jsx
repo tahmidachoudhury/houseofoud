@@ -4,7 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 
 function ReviewCard(props){
   return (
-    <Box style={{padding: '50px'}}>
+    <Box style={{padding: '8%'}}>
 
       <Card style={{padding: "24px"}}>
 
