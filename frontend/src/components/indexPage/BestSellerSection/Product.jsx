@@ -19,8 +19,8 @@ function Product(props){
 
   const productInfo = {
     padding: "15px 0 ",
-    borderTop: "2px solid black",
-    borderBottom: "2px solid black",
+    borderTop: "1px solid black",
+    borderBottom: "1px solid black",
     marginTop: "12px"
   }
 
