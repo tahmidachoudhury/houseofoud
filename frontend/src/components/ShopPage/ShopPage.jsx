@@ -1,9 +1,9 @@
 import React from "react";
 import Product from "../indexPage/BestSellerSection/Product";
 import Typography from "@mui/material/Typography";
-import Grid from '@mui/system/Unstable_Grid';
-import BestSellingProducts from "../indexPage/BestSellerSection/bestSellingData";
+import allItems from "./allItems";
 import Box from "@mui/system/Box";
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,17 +22,19 @@ function ShopPage(){
             md: 'repeat(4, minmax(0, 1fr))', // 4 columns on medium screens
         }}>
 
-          {BestSellingProducts.map((product, index) => {
-            return <Box gridColumn={ {xs: 'span 1', sm: 'auto'} } sx={{aspectRatio: '1/1'}} key={index} > 
-              <Product 
-                key={index}
-                url={product.url}
-                type={product.type}
-                name={product.name}
-                price={product.price}
-                size={product.size}
-              />
-            </Box>
+          {allItems.map((product, index) => {
+            return <Link to={`/product/${product.id}`} key={product.id}>
+              <Box gridColumn={ {xs: 'span 1', sm: 'auto'} } sx={{aspectRatio: '1/1'}} key={index} > 
+                <Product 
+                  key={product.id}
+                  url={product.url}
+                  type={product.type}
+                  name={product.name}
+                  price={product.price}
+                  size={product.size}
+                />
+              </Box>
+            </Link>
           })}
 
 

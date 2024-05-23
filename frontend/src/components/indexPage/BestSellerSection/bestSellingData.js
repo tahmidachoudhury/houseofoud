@@ -27,41 +27,6 @@ const BestSellingProducts = [
     url: "pink_bliss_flower.jpg",
     size: "1 size",
   },
-  {
-    type: "Eau De Toilette",
-    name: "Pink Bliss",
-    price: "From £6.00",
-    url: "pink_bliss_flower.jpg",
-    size: "1 size",
-  },
-  {
-    type: "Eau De Toilette",
-    name: "Pink Bliss",
-    price: "From £6.00",
-    url: "pink_bliss_flower.jpg",
-    size: "1 size",
-  },
-  {
-    type: "Eau De Toilette",
-    name: "Pink Bliss",
-    price: "From £6.00",
-    url: "pink_bliss_flower.jpg",
-    size: "1 size",
-  },
-  {
-    type: "Eau De Toilette",
-    name: "Pink Bliss",
-    price: "From £6.00",
-    url: "pink_bliss_flower.jpg",
-    size: "1 size",
-  },
-  {
-    type: "Eau De Toilette",
-    name: "Pink Bliss",
-    price: "From £6.00",
-    url: "pink_bliss_flower.jpg",
-    size: "1 size",
-  },
 ]
   
 
