@@ -7,7 +7,7 @@ class User(models.Model):
   password = models.CharField(max_length=60)
 
 class Review(models.Model):
-  stars = models.IntegerField(max_length=1)
+  stars = models.IntegerField()
   subject = models.CharField(max_length=30)
   content = models.CharField(max_length=60)
   name = models.CharField(max_length=30)
