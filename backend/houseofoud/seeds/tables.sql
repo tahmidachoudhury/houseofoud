@@ -19,6 +19,7 @@ CREATE SEQUENCE IF NOT EXISTS users_id_seq;
 CREATE TABLE app_user (
   id SERIAL PRIMARY KEY,
   username text,
+  email text,
   password text
 );
 
@@ -30,5 +31,5 @@ INSERT INTO app_review (stars, subject, content, name) VALUES (5, 'So good that 
 INSERT INTO app_review (stars, subject, content, name) VALUES (5, 'Premium.', 'The only place where I''ll be getting fragrances from now.', 'Abu Imran K.');
 
 
-INSERT INTO app_user (username, password) VALUES ('tahmid', 'mashallah10');
-INSERT INTO app_user (username, password) VALUES ('new_user', 'hello123');  
+INSERT INTO app_user (username, email, password) VALUES ('tahmid', 'tahmid@tahmid.com', 'mashallah10');
+INSERT INTO app_user (username, email, password) VALUES ('new_user', 'newuser@gmail.com', 'hello123');  
