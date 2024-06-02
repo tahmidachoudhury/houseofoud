@@ -37,12 +37,26 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const apiURL = import.meta.env.VITE_POST_SIGN_IN_DATA;
+  console.log("API URL:", apiURL);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const formdata = {
+      firstname: data.get("firstName"),
+      lastname: data.get("lastName"),
+      username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
+    };
+
+    fetch(apiURL, {
+      method: "POST",
+      body: JSON.stringify(formdata),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 
@@ -96,6 +110,15 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
@@ -108,6 +131,17 @@ export default function SignUp() {
                   fullWidth
                   name="password"
                   label="Password"
+                  type="password"
+                  id="confirm-password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Confirm Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"

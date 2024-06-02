@@ -86,7 +86,6 @@ export default function SignInSide() {
             <Box
               component="form"
               noValidate
-              method="POST"
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
