@@ -13,7 +13,7 @@ class User(models.Model):
 class Review(models.Model):
   stars = models.IntegerField()
   subject = models.CharField(max_length=30)
-  content = models.CharField(max_length=60)
+  content = models.CharField(max_length=100)
   name = models.CharField(max_length=30)
 
   def __str__(self):
