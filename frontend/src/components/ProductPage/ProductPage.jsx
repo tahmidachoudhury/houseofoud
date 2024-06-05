@@ -4,13 +4,22 @@ import { useParams } from "react-router-dom";
 import Box from "@mui/system/Box";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { Button } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 function ProductPage() {
-  const quantity = 1;
-
   const { id } = useParams();
   const product = allItems.find((item) => item.id.toString() === id);
+
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
+  const quantity = getItemQuantity(id);
 
   return (
     <Box sx={{ marginTop: "64px", padding: "22px 30px" }}>
@@ -21,17 +30,31 @@ function ProductPage() {
         <p>{product.description}</p>
       </Box>
       <Box>
-        <Button variant="contained" size="small">
-          +
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => increaseCartQuantity(id)}
+        >
+          <AddIcon />
         </Button>
         <span>{quantity}</span>
-        <Button variant="contained" size="small">
-          -
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => decreaseCartQuantity(id)}
+        >
+          <RemoveIcon />
         </Button>
       </Box>
       <Box>
-        <Button variant="contained" color="secondary" startIcon={<SendIcon />}>
-          Add to cart
+        <Button
+          Button
+          variant="outlined"
+          color="error"
+          startIcon={<DeleteIcon />}
+          onClick={() => removeFromCart(id)}
+        >
+          Remove from cart
         </Button>
       </Box>
     </Box>

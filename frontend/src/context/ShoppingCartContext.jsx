@@ -9,6 +9,11 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
+  //will use this to change functionality
+  //so that items don't go directly to the cart
+  //without confirming
+  //const [stagedItems, setStagedItems] = useState([]);
+
   function getItemQuantity(id) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
@@ -45,9 +50,20 @@ export function ShoppingCartProvider({ children }) {
     });
   }
 
+  function removeFromCart(id) {
+    setCartItems((currItems) => {
+      return currItems.filter((item) => item.id !== id);
+    });
+  }
+
   return (
     <ShoppingCartContext.Provider
-      value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity }}
+      value={{
+        getItemQuantity,
+        increaseCartQuantity,
+        decreaseCartQuantity,
+        removeFromCart,
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>
