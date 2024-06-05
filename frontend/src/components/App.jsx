@@ -8,10 +8,11 @@ import ProductPage from "./ProductPage/ProductPage.jsx";
 import SignInSide from "./SignupPage/Login.jsx";
 import SignUp from "./SignupPage/Sign-Up.jsx";
 import Checkout from "./CheckoutPage/Checkout.jsx";
+import { ShoppingCartProvider } from "../context/ShoppingCartContext.jsx";
 
 function App() {
   return (
-    <div>
+    <ShoppingCartProvider>
       <Router>
         <Navbar />
         <Routes>
@@ -25,7 +26,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </div>
+    </ShoppingCartProvider>
   );
 }
 
