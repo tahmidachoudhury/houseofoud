@@ -1,6 +1,6 @@
 import React from "react";
 import ReviewCard from "./ReviewCard";
-import reviews from "../../data.js";
+import reviews from "../../../data/allItems";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useState, useEffect } from "react";

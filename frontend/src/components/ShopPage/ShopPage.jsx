@@ -1,8 +1,9 @@
 import React from "react";
 import Product from "../indexPage/BestSellerSection/Product";
 import Typography from "@mui/material/Typography";
-import allItems from "./allItems";
+import allItems from "../../data/allItems";
 import Box from "@mui/system/Box";
+import { formatCurrency } from "../../utilities/formatCurrency";
 import { Link } from "react-router-dom";
 
 function ShopPage() {
@@ -35,7 +36,7 @@ function ShopPage() {
                   url={product.url}
                   type={product.type}
                   name={product.name}
-                  price={product.price}
+                  price={formatCurrency(product.price)}
                   size={product.size}
                 />
               </Box>
