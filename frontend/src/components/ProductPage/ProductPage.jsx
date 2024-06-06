@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import allItems from "../../data/allItems";
+import allItems from "../../data/allItems.json";
 import { useParams } from "react-router-dom";
 import Box from "@mui/system/Box";
 import { formatCurrency } from "../../utilities/formatCurrency";

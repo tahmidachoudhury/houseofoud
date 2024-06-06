@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "../indexPage/BestSellerSection/Product";
 import Typography from "@mui/material/Typography";
-import allItems from "../../data/allItems";
+import allItems from "../../data/allItems.json";
 import Box from "@mui/system/Box";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { Link } from "react-router-dom";
