@@ -13,6 +13,14 @@ function ProductPage() {
   const { id } = useParams();
   const product = allItems.find((item) => item.id.toString() === id);
 
+  if (!product) {
+    return (
+      <Box sx={{ marginTop: "64px", padding: "22px 30px" }}>
+        this doesn't exist
+      </Box>
+    );
+  }
+
   const {
     getItemQuantity,
     increaseCartQuantity,

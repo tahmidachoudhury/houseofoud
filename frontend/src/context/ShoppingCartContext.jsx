@@ -7,17 +7,25 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartProvider({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+
+  const cartQuantity = cartItems.reduce(
+    (quantity, item) => item.quantity + quantity,
+    0
+  );
 
   //will use this to change functionality
   //so that items don't go directly to the cart
   //without confirming
   //const [stagedItems, setStagedItems] = useState([]);
 
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
+
   function getItemQuantity(id) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
-
   function increaseCartQuantity(id) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
@@ -33,7 +41,6 @@ export function ShoppingCartProvider({ children }) {
       }
     });
   }
-
   function decreaseCartQuantity(id) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id)?.quantity === 1) {
@@ -49,7 +56,6 @@ export function ShoppingCartProvider({ children }) {
       }
     });
   }
-
   function removeFromCart(id) {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id !== id);
@@ -63,6 +69,10 @@ export function ShoppingCartProvider({ children }) {
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
+        openCart,
+        closeCart,
+        cartItems,
+        cartQuantity,
       }}
     >
       {children}

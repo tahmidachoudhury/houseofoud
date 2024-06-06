@@ -20,6 +20,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 
 const drawerWidth = 240;
 const navItems = ["Shop", "Account", "Liked", "Cart"];
@@ -42,6 +43,7 @@ function HideOnScroll(props) {
 }
 
 export default function DrawerAppBar(props) {
+  const { openCart, closeCart } = useShoppingCart();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
