@@ -43,7 +43,7 @@ function HideOnScroll(props) {
 }
 
 export default function DrawerAppBar(props) {
-  const { openCart, closeCart } = useShoppingCart();
+  const { openCart, cartQuantity } = useShoppingCart();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -126,11 +126,19 @@ export default function DrawerAppBar(props) {
                 textAlign: "right",
               }}
             >
-              {rightItems.map((item) => (
-                <Button key={item} sx={{ color: "#fff" }}>
-                  <Link to={`/${item}`}>{item}</Link>
-                </Button>
-              ))}
+              <Button sx={{ color: "#fff" }}>
+                <Link to={`/liked`}>liked</Link>
+              </Button>
+
+              <Button sx={{ color: "#fff" }}>
+                <Link to={`/account`}>account</Link>
+              </Button>
+
+              {/* <ShoppingCart /> */}
+
+              <Button sx={{ color: "#fff" }} onClick={openCart}>
+                <Link>cart({cartQuantity})</Link>
+              </Button>
             </Box>
 
             <IconButton

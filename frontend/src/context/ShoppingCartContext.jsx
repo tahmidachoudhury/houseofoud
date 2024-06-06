@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { ShoppingCart } from "../components/NavbarSection/ShoppingCart";
 
 const ShoppingCartContext = createContext({});
 
@@ -76,6 +77,7 @@ export function ShoppingCartProvider({ children }) {
       }}
     >
       {children}
+      <ShoppingCart open={isOpen} />
     </ShoppingCartContext.Provider>
   );
 }
