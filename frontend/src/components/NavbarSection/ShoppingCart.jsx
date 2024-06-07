@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import { Button, Divider, Drawer, List, ListItem } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CartItem } from "./CartItem";
+import { formatCurrency } from "../../utilities/formatCurrency";
+import allItems from "../../data/allItems.json";
 
 export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart();
 
   const DrawerList = (
-    <Box sx={{ width: 400 }} role="presentation" onClick={closeCart}>
+    <Box sx={{ width: 600 }} role="presentation" onClick={closeCart}>
       <List>
         <ListItem>
           <h2>Cart</h2>
@@ -32,18 +23,15 @@ export function ShoppingCart(props) {
         </Stack>
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <div className="ms-auto fw-bold fs-5">
+        Total{" "}
+        {formatCurrency(
+          cartItems.reduce((total, cartItem) => {
+            const item = allItems.find((i) => i.id === Number(cartItem.id));
+            return total + (item?.price || 0) * cartItem.quantity;
+          }, 0)
+        )}
+      </div>
     </Box>
   );
 
