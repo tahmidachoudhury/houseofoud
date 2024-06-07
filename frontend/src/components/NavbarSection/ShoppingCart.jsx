@@ -10,7 +10,7 @@ export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart();
 
   const DrawerList = (
-    <Box sx={{ width: 600 }} role="presentation" onClick={closeCart}>
+    <Box sx={{ width: 600 }} role="presentation">
       <List>
         <ListItem>
           <h2>Cart</h2>
