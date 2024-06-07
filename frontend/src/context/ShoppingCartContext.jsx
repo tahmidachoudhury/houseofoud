@@ -59,7 +59,7 @@ export function ShoppingCartProvider({ children }) {
   }
   function removeFromCart(id) {
     setCartItems((currItems) => {
-      return currItems.filter((item) => item.id !== id);
+      return currItems.filter((item) => Number(item.id) !== id);
     });
   }
 

@@ -18,11 +18,13 @@ export function ShoppingCart(props) {
 
         <Stack>
           {cartItems.map((item) => (
-            <CartItem key={item.id} {...item} />
+            <>
+              <CartItem key={item.id} {...item} />
+              <Divider />
+            </>
           ))}
         </Stack>
       </List>
-      <Divider />
       <div className="ms-auto fw-bold fs-5">
         Total{" "}
         {formatCurrency(
