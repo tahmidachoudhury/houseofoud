@@ -5,12 +5,13 @@ import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import allItems from "../../data/allItems.json";
+import { Link } from "react-router-dom";
 
 export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart();
 
   const DrawerList = (
-    <Box sx={{ width: 600 }} role="presentation">
+    <Box sx={{ width: 450 }} role="presentation">
       <List>
         <ListItem>
           <h2>Cart</h2>
@@ -25,15 +26,23 @@ export function ShoppingCart(props) {
           ))}
         </Stack>
       </List>
-      <div style={{ textAlign: "right" }}>
-        Total{" "}
-        {formatCurrency(
-          cartItems.reduce((total, cartItem) => {
-            const item = allItems.find((i) => i.id === Number(cartItem.id));
-            return total + (item?.price || 0) * cartItem.quantity;
-          }, 0)
-        )}
-      </div>
+      <Box display="flex" justifyContent="space-between">
+        <div>Subtotal:</div>
+        <div>
+          Total{" "}
+          {formatCurrency(
+            cartItems.reduce((total, cartItem) => {
+              const item = allItems.find((i) => i.id === Number(cartItem.id));
+              return total + (item?.price || 0) * cartItem.quantity;
+            }, 0)
+          )}
+        </div>
+      </Box>
+      <a href="/checkout">
+        <Button variant="outline-danger" size="sm">
+          Checkout
+        </Button>
+      </a>
     </Box>
   );
 

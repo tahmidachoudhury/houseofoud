@@ -20,9 +20,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route exact path="/" element={<Home />} />
           <Route path="/shop" element={<ShopPage />} />
-          {/* <Route path="/cart" element={<Checkout />} /> */}
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductPage />} />
-          {/* <Route path="/checkout" element={<CheckoutPage />} */}
         </Routes>
         <Footer />
       </Router>
