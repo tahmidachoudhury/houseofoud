@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Divider, Drawer, List, ListItem } from "@mui/material";
-import { Box, Stack } from "@mui/system";
+import { Box, Stack, textAlign } from "@mui/system";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../../utilities/formatCurrency";
@@ -25,7 +25,7 @@ export function ShoppingCart(props) {
           ))}
         </Stack>
       </List>
-      <div className="ms-auto fw-bold fs-5">
+      <div style={{ textAlign: "right" }}>
         Total{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
