@@ -7,7 +7,8 @@ import ShopPage from "./ShopPage/ShopPage.jsx";
 import ProductPage from "./ProductPage/ProductPage.jsx";
 import SignInSide from "./SignupPage/Login.jsx";
 import SignUp from "./SignupPage/Sign-Up.jsx";
-import Checkout from "./CheckoutPage/Checkout.jsx";
+// import Checkout from "./CheckoutPage/Checkout.jsx";
+import StripeCheckout from "./StripeCheckoutPage/StripeCheckout.jsx";
 import { ShoppingCartProvider } from "../context/ShoppingCartContext.jsx";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route exact path="/" element={<Home />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<StripeCheckout />} />
           <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
         <Footer />
