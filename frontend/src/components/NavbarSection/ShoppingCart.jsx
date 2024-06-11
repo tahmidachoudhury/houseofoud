@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Button, Divider, Drawer, List, ListItem } from "@mui/material";
-import { Box, Stack, textAlign } from "@mui/system";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { CartItem } from "./CartItem";
-import { formatCurrency } from "../../utilities/formatCurrency";
-import allItems from "../../data/allItems.json";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { Button, Divider, Drawer, List, ListItem } from "@mui/material"
+import { Box, Stack, textAlign } from "@mui/system"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
+import { CartItem } from "./CartItem"
+import { formatCurrency } from "../../utilities/formatCurrency"
+import allItems from "../../data/allItems.json"
+import { Link } from "react-router-dom"
 
 export function ShoppingCart(props) {
-  const { closeCart, cartItems } = useShoppingCart();
+  const { closeCart, cartItems } = useShoppingCart()
 
   const DrawerList = (
     <Box sx={{ width: 450 }} role="presentation">
@@ -32,8 +32,8 @@ export function ShoppingCart(props) {
           Total{" "}
           {formatCurrency(
             cartItems.reduce((total, cartItem) => {
-              const item = allItems.find((i) => i.id === Number(cartItem.id));
-              return total + (item?.price || 0) * cartItem.quantity;
+              const item = allItems.find((i) => i.id === Number(cartItem.id))
+              return total + (item?.price || 0) * cartItem.quantity
             }, 0)
           )}
         </div>
@@ -44,7 +44,7 @@ export function ShoppingCart(props) {
         </Button>
       </a>
     </Box>
-  );
+  )
 
   return (
     <div>
@@ -52,5 +52,5 @@ export function ShoppingCart(props) {
         {DrawerList}
       </Drawer>
     </div>
-  );
+  )
 }

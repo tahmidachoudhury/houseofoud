@@ -1,14 +1,14 @@
-import React from "react";
-import Product from "../indexPage/BestSellerSection/Product";
-import Typography from "@mui/material/Typography";
-import allItems from "../../data/allItems.json";
-import Box from "@mui/system/Box";
-import { formatCurrency } from "../../utilities/formatCurrency";
-import { Link } from "react-router-dom";
+import React from "react"
+import Product from "../indexPage/BestSellerSection/Product"
+import Typography from "@mui/material/Typography"
+import allItems from "../../data/allItems.json"
+import Box from "@mui/system/Box"
+import { formatCurrency } from "../../utilities/formatCurrency"
+import { Link } from "react-router-dom"
 
 function ShopPage() {
   return (
-    <Box sx={{ marginTop: "64px", padding: "22px 30px" }}>
+    <Box sx={{ padding: "22px 30px" }}>
       <Box textAlign="center" paddingTop="3rem" paddingBottom="1rem">
         <Typography variant="h4" gutterBottom>
           All Fragrances
@@ -41,11 +41,11 @@ function ShopPage() {
                 />
               </Box>
             </Link>
-          );
+          )
         })}
       </Box>
     </Box>
-  );
+  )
 }
 
-export default ShopPage;
+export default ShopPage

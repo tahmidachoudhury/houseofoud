@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import allItems from "../../data/allItems.json";
-import { useParams } from "react-router-dom";
-import Box from "@mui/system/Box";
-import { formatCurrency } from "../../utilities/formatCurrency";
-import { Button } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { styled } from "@mui/material/styles";
+import React, { useState } from "react"
+import allItems from "../../data/allItems.json"
+import { useParams } from "react-router-dom"
+import Box from "@mui/system/Box"
+import { formatCurrency } from "../../utilities/formatCurrency"
+import { Button } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
+import AddIcon from "@mui/icons-material/Add"
+import RemoveIcon from "@mui/icons-material/Remove"
+import { styled } from "@mui/material/styles"
 
 const ColorButton = styled(Button)({
   color: "white",
@@ -19,18 +19,18 @@ const ColorButton = styled(Button)({
     boxShadow: "none",
     backgroundColor: "white",
   },
-});
+})
 
 function ProductPage() {
-  const { id } = useParams();
-  const product = allItems.find((item) => item.id.toString() === id);
+  const { id } = useParams()
+  const product = allItems.find((item) => item.id.toString() === id)
 
   if (!product) {
     return (
       <Box sx={{ marginTop: "64px", padding: "22px 30px" }}>
         this doesn't exist
       </Box>
-    );
+    )
   }
 
   const {
@@ -38,11 +38,11 @@ function ProductPage() {
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
-  } = useShoppingCart();
-  const quantity = getItemQuantity(id);
+  } = useShoppingCart()
+  const quantity = getItemQuantity(id)
 
   return (
-    <Box sx={{ marginTop: "64px", padding: "22px 30px" }}>
+    <Box sx={{ padding: "22px 30px" }}>
       <Box>
         <h1>{product.name}</h1>
         <p>{product.type}</p>
@@ -70,7 +70,7 @@ function ProductPage() {
         </Button>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default ProductPage;
+export default ProductPage

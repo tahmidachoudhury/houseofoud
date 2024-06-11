@@ -1,55 +1,55 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Slide from "@mui/material/Slide";
-import Button from "@mui/material/Button";
-import ShoppingBagTwoToneIcon from "@mui/icons-material/ShoppingBagTwoTone";
-import SearchIcon from "@mui/icons-material/Search";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link } from "react-router-dom";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
+import * as React from "react"
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import CssBaseline from "@mui/material/CssBaseline"
+import useScrollTrigger from "@mui/material/useScrollTrigger"
+import Divider from "@mui/material/Divider"
+import Drawer from "@mui/material/Drawer"
+import IconButton from "@mui/material/IconButton"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemButton from "@mui/material/ListItemButton"
+import ListItemText from "@mui/material/ListItemText"
+import MenuIcon from "@mui/icons-material/Menu"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import Slide from "@mui/material/Slide"
+import Button from "@mui/material/Button"
+import ShoppingBagTwoToneIcon from "@mui/icons-material/ShoppingBagTwoTone"
+import SearchIcon from "@mui/icons-material/Search"
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import { Link } from "react-router-dom"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
 
-const drawerWidth = 240;
-const navItems = ["Shop", "Account", "Liked", "Cart"];
-const rightItems = ["Account", "Liked", "Cart"];
+const drawerWidth = 240
+const navItems = ["Shop", "Account", "Liked", "Cart"]
+const rightItems = ["Account", "Liked", "Cart"]
 
 function HideOnScroll(props) {
-  const { children, window } = props;
+  const { children, window } = props
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
-  });
+  })
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children}
     </Slide>
-  );
+  )
 }
 
 export default function DrawerAppBar(props) {
-  const { openCart, cartQuantity } = useShoppingCart();
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { openCart, cartQuantity } = useShoppingCart()
+  const { window } = props
+  const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
+    setMobileOpen((prevState) => !prevState)
+  }
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -69,16 +69,16 @@ export default function DrawerAppBar(props) {
         ))}
       </List>
     </Box>
-  );
+  )
 
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    window !== undefined ? () => window().document.body : undefined
 
   return (
     <Box>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar component="nav" sx={{ bgcolor: "#575756" }}>
+        <AppBar component="nav" position="sticky" sx={{ bgcolor: "#575756" }}>
           <Toolbar sx={{ display: "flex" }}>
             <IconButton
               color="inherit"
@@ -188,5 +188,5 @@ export default function DrawerAppBar(props) {
         </Drawer>
       </nav>
     </Box>
-  );
+  )
 }
