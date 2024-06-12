@@ -159,6 +159,9 @@ export default function DrawerAppBar(props) {
 
             <IconButton
               color="inherit"
+              onClick={() => {
+                openCart()
+              }}
               edge="start"
               sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
             >

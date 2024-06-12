@@ -20,7 +20,7 @@ class CreateCheckoutSessionView(APIView):
 
                     {
                         # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                        'price': '{{PRICE_ID}}',
+                        'price': 'pr_1234',
                         'quantity': 1,
                     },
                 ],

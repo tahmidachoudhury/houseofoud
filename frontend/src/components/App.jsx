@@ -10,6 +10,7 @@ import SignUp from "./SignupPage/Sign-Up.jsx"
 import Checkout from "./CheckoutPage/Checkout.jsx"
 import StripeCheckout from "./StripeCheckoutPage/StripeCheckout.jsx"
 import { ShoppingCartProvider } from "../context/ShoppingCartContext.jsx"
+import StripeRedirect from "./StripeCheckoutPage/StripeRedirect.jsx"
 
 function App() {
   return (

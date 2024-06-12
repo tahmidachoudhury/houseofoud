@@ -6,9 +6,18 @@ import { CartItem } from "./CartItem"
 import { formatCurrency } from "../../utilities/formatCurrency"
 import allItems from "../../data/allItems.json"
 import { Link } from "react-router-dom"
+import StripeRedirect from "../StripeCheckoutPage/StripeRedirect"
 
 export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart()
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState)
+  }
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined
 
   const DrawerList = (
     <Box sx={{ width: 450 }} role="presentation">
