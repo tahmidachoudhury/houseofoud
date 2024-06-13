@@ -22,7 +22,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route exact path="/" element={<Home />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/checkout" element={<StripeCheckout />} />
+          <Route path="/checkout" element={<StripeRedirect />} />
           <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
         <Footer />

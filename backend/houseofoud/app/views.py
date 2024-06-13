@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from django.conf import settings
 from django.http import JsonResponse
 from rest_framework.views import APIView
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 # Create your views here.
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -20,7 +22,7 @@ class CreateCheckoutSessionView(APIView):
 
                     {
                         # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                        'price': 'pr_1234',
+                        'price': settings.PRODUCT_PRICE,
                         'quantity': 1,
                     },
                 ],
@@ -28,9 +30,8 @@ class CreateCheckoutSessionView(APIView):
                 success_url=YOUR_DOMAIN + '/success',
                 cancel_url=YOUR_DOMAIN + '/cancel',
             )
-            return JsonResponse({
-                'id': checkout_session.id
-            })
 
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+        return HttpResponseRedirect(checkout_session.url)
