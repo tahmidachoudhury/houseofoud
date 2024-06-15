@@ -48,9 +48,14 @@ export function ShoppingCart(props) {
         </div>
       </Box>
       <a href="/checkout">
-        <Button variant="outline-danger" size="sm">
-          Checkout
-        </Button>
+        <form
+          action="http://localhost:8000/create-checkout-session/"
+          method="POST"
+        >
+          <Button variant="outline-danger" type="submit" size="sm">
+            Checkout
+          </Button>
+        </form>
       </a>
     </Box>
   )
