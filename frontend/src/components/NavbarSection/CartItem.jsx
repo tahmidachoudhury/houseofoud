@@ -1,11 +1,11 @@
-import React from "react";
-import allItems from "../../data/allItems.json";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { Box, Stack, styled } from "@mui/system";
-import { formatCurrency } from "../../utilities/formatCurrency";
-import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import React, { useEffect, useState } from "react"
+import allItems from "../../data/allItems.json"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
+import { Box, Stack, styled } from "@mui/system"
+import { formatCurrency } from "../../utilities/formatCurrency"
+import { Button } from "@mui/material"
+import AddIcon from "@mui/icons-material/Add"
+import RemoveIcon from "@mui/icons-material/Remove"
 
 const ColorButton = styled(Button)({
   color: "white",
@@ -16,13 +16,36 @@ const ColorButton = styled(Button)({
     boxShadow: "none",
     backgroundColor: "white",
   },
-});
+})
 
 export function CartItem(props) {
+  const [data, setData] = useState([])
   const { removeFromCart, increaseCartQuantity, decreaseCartQuantity } =
-    useShoppingCart();
-  const item = allItems.find((i) => i.id === Number(props.id));
-  if (item == null) return null;
+    useShoppingCart()
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiUrl = import.meta.env.VITE_PRODUCTS_API_URL
+      try {
+        const response = await fetch(apiUrl)
+
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`)
+        }
+
+        const result = await response.json()
+        setData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+        setError(error.message)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  const item = data.find((i) => i.id === Number(props.id))
+  if (item == null) return null
 
   return (
     <Stack direction="horizontal" gap={2}>
@@ -65,5 +88,5 @@ export function CartItem(props) {
       </div>
       <div> {formatCurrency(item.price * props.quantity)}</div>
     </Stack>
-  );
+  )
 }

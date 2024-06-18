@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 STRIPE_SECRET_KEY = 'sk_test_51POxdB00JqWikrEqzU7AG6ZjDen08OaA2vDcMPXFvPjLFuO1YYkhejuntXxUQV9987yBCt9n6YuCl6tqiLY59UYV00elGWx1ZR'
 
-PRODUCT_PRICE = 'price_1PRFH600JqWikrEqZZAiRgtZ'
+PRODUCT_PRICE = 'price_1PT4ev00JqWikrEqWiluna19'
 
 # Application definition
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import allItems from "../../data/allItems.json"
 import { useParams } from "react-router-dom"
 import Box from "@mui/system/Box"
@@ -22,8 +22,31 @@ const ColorButton = styled(Button)({
 })
 
 function ProductPage() {
+  const [data, setData] = useState([])
   const { id } = useParams()
-  const product = allItems.find((item) => item.id.toString() === id)
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiUrl = import.meta.env.VITE_PRODUCTS_API_URL
+      try {
+        const response = await fetch(apiUrl)
+
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`)
+        }
+
+        const result = await response.json()
+        setData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+        setError(error.message)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  const product = data.find((item) => item.id.toString() === id)
 
   if (!product) {
     return (

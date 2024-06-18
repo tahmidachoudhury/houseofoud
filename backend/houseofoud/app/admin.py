@@ -4,7 +4,11 @@ from .models import *
 
 admin.site.register(Review)
 
+
 class UserInfo(admin.ModelAdmin):
-  list_display = ("username", "email")
+    list_display = ("username", "email")
+
 
 admin.site.register(User, UserInfo)
+
+admin.site.register(Product)

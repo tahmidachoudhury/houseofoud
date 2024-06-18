@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Divider, Drawer, List, ListItem } from "@mui/material"
 import { Box, Stack, textAlign } from "@mui/system"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
@@ -11,6 +11,28 @@ import StripeRedirect from "../StripeCheckoutPage/StripeRedirect"
 export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiUrl = import.meta.env.VITE_PRODUCTS_API_URL
+      try {
+        const response = await fetch(apiUrl)
+
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`)
+        }
+
+        const result = await response.json()
+        setData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+        setError(error.message)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
@@ -41,7 +63,7 @@ export function ShoppingCart(props) {
           Total{" "}
           {formatCurrency(
             cartItems.reduce((total, cartItem) => {
-              const item = allItems.find((i) => i.id === Number(cartItem.id))
+              const item = data.find((i) => i.id === Number(cartItem.id))
               return total + (item?.price || 0) * cartItem.quantity
             }, 0)
           )}

@@ -1,37 +1,32 @@
-import React from "react";
-import ReviewCard from "./ReviewCard";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { useState, useEffect } from "react";
+import React from "react"
+import ReviewCard from "./ReviewCard"
+import Carousel from "react-multi-carousel"
+import "react-multi-carousel/lib/styles.css"
+import { useState, useEffect } from "react"
 
 function ReviewSection() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     async function fetchData() {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      console.log("API URL:", apiUrl); // Logging the API URL
+      const apiUrl = import.meta.env.VITE_API_URL
       try {
-        const response = await fetch(apiUrl);
-        console.log("Response Status:", response.status); // Logging response status
+        const response = await fetch(apiUrl)
 
         if (!response.ok) {
-          throw new Error(
-            `Network response was not ok: ${response.statusText}`
-          );
+          throw new Error(`Network response was not ok: ${response.statusText}`)
         }
 
-        const result = await response.json();
-        console.log("Fetched Data:", result); // Logging the result
-        setData(result);
+        const result = await response.json()
+        setData(result)
       } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message);
+        console.error("Error fetching data:", error)
+        setError(error.message)
       }
     }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   const responsive = {
     desktop: {
@@ -49,14 +44,14 @@ function ReviewSection() {
       items: 1,
       slidesToSlide: 1, // optional, default to 1.
     },
-  };
+  }
 
   const main = {
     padding: "48px 0",
     backgroundImage:
       'url("https://www.transparenttextures.com/patterns/brushed-alum.png")',
     margin: "0",
-  };
+  }
 
   return (
     <div style={main}>
@@ -81,12 +76,12 @@ function ReviewSection() {
               content={review.content}
               name={review.name}
             />
-          );
+          )
         })}
       </Carousel>
       ;
     </div>
-  );
+  )
 }
 
-export default ReviewSection;
+export default ReviewSection

@@ -1,13 +1,11 @@
 import stripe
-from django.shortcuts import render
 from . models import *
 from api.serializer import *
-from rest_framework.response import Response
 from django.conf import settings
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+
 # Create your views here.
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -18,6 +16,7 @@ class CreateCheckoutSessionView(APIView):
         YOUR_DOMAIN = "http://localhost:5173"
         try:
             checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
                 line_items=[
 
                     {
