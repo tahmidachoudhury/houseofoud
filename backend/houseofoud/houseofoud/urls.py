@@ -16,12 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import CreateCheckoutSessionView
+from app.views import create_checkout_session
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),
-    path('create-checkout-session/', CreateCheckoutSessionView.as_view(),
+    path('create-checkout-session/', create_checkout_session,
          name='create-checkout-session'),
 ]

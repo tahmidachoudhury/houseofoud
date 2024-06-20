@@ -4,6 +4,7 @@ import { Box, Stack, textAlign } from "@mui/system"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import { CartItem } from "./CartItem"
 import { formatCurrency } from "../../utilities/formatCurrency"
+import CSRFToken, { getCookie } from "../../utilities/csrf"
 import allItems from "../../data/allItems.json"
 import { Link } from "react-router-dom"
 import StripeRedirect from "../StripeCheckoutPage/StripeRedirect"
@@ -12,6 +13,7 @@ export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart()
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [data, setData] = useState([])
+  const csrftoken = getCookie("csrftoken")
 
   useEffect(() => {
     async function fetchData() {
@@ -33,6 +35,36 @@ export function ShoppingCart(props) {
 
     fetchData()
   }, [])
+
+  //-----------------------------------------------------------------
+  function sendCartData(event) {
+    event.preventDefault()
+
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify({ cartItems: cartWithIntIds }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+    }
+    fetch(import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API, requestOptions)
+      .then((data) => {
+        if (data.url) {
+          window.location.href = data.url // Redirect to the Stripe checkout session URL
+        } else {
+          console.error("Error creating checkout session:", data)
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error)
+      })
+  }
+  //-----------------------------------------------------------------
+  const cartWithIntIds = cartItems.map((item) => ({
+    ...item,
+    id: parseInt(item.id, 10),
+  }))
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
@@ -69,16 +101,22 @@ export function ShoppingCart(props) {
           )}
         </div>
       </Box>
-      <a href="/checkout">
-        <form
-          action="http://localhost:8000/create-checkout-session/"
-          method="POST"
+      {console.log(JSON.stringify({ cartItems: cartWithIntIds }))}
+      {console.log(csrftoken)}
+      <form
+        action={import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API}
+        method="post"
+      >
+        <CSRFToken />
+        <Button
+          variant="outline-danger"
+          type="submit"
+          size="sm"
+          onClick={sendCartData}
         >
-          <Button variant="outline-danger" type="submit" size="sm">
-            Checkout
-          </Button>
-        </form>
-      </a>
+          Checkout
+        </Button>
+      </form>
     </Box>
   )
 
