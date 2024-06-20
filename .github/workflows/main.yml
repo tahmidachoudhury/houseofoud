@@ -19,6 +19,7 @@ jobs:
 
       - name: Install all dependencies
         run: npm install
+        working-directory: ./frontend
 
       - name: Build
         run: npm run build # The build command of your project
