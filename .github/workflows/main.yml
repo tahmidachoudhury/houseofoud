@@ -22,6 +22,7 @@ jobs:
 
       - name: Build
         run: npm run build # The build command of your project
+        working-directory: ./frontend
 
       - name: Push to build branch
         uses: s0/git-publish-subdir-action@develop
@@ -31,3 +32,5 @@ jobs:
           FOLDER: dist # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
+        with:
+          directory: ./frontend/dist
