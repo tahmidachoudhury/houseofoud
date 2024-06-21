@@ -1,6 +1,22 @@
-import { Grid } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import { Box, color } from "@mui/system"
 import React from "react"
+import { createTheme } from "@mui/material/styles"
+import { ThemeProvider } from "@mui/material/styles"
+
+const Montserrat = createTheme({
+  typography: {
+    fontFamily: ["Abel", "Montserrat", "Open Sans"].join(","),
+  },
+})
+
+const Anton = createTheme({
+  typography: {
+    fontFamily: ["Bebas Neue", "Montserrat", "Open Sans"].join(","),
+    fontSize: 20,
+    color: "white",
+  },
+})
 
 export default function LandingPage() {
   return (
@@ -23,9 +39,15 @@ export default function LandingPage() {
         }}
       >
         <Grid item xs={3}>
-          <Box sx={{ color: "black", fontSize: "1.5rem" }}>
-            <h5>We are launching our website soon</h5>
-            <h1>House of Oud</h1>
+          <Box sx={{ textAlign: "center" }}>
+            <ThemeProvider theme={Montserrat}>
+              <Typography variant="h5">
+                WE ARE LAUNCHING OUR WEBSITE SOON
+              </Typography>
+            </ThemeProvider>
+            <ThemeProvider theme={Anton}>
+              <Typography variant="h1">House of Oud</Typography>
+            </ThemeProvider>
           </Box>
         </Grid>
       </Grid>
