@@ -13,36 +13,28 @@ from rest_framework.decorators import api_view, permission_classes
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-line_items = []
 
+def append_cart_to_line_items(cart):
+    line_items = []
+    for item in cart:
+        product = Product.objects.get(id=item['id'])
+        print(product.name)
+        line_items.append({
+            'price': settings.PRODUCT_PRICE,
+            'quantity': item['quantity'],
+        })
+    return line_items
 
 # def append_cart_to_line_items(cart):
 #     for item in cart:
 #         product = Product.objects.get(id=item['id'])
 #         print(product.name)
 #         line_items.append({
-#             'price_data': {
-#                 'currency': 'gbp',
-#                 'unit_amount': product.price,
-#                 'product_data': {
-#                     'name': product.name
-#                 },
-#                 'unit_amount': int(product.price * 100),
-#             },
-#             'quantity': item['quantity'],
+#             # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+#             'price': settings.PRODUCT_PRICE,
+#             'quantity': 1,
 #         })
 #     return line_items
-
-def append_cart_to_line_items(cart):
-    for item in cart:
-        product = Product.objects.get(id=item['id'])
-        print(product.name)
-        line_items.append({
-            # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-            'price': settings.PRODUCT_PRICE,
-            'quantity': 1,
-        })
-    return line_items
 
 
 @api_view(['POST'])
@@ -53,6 +45,7 @@ def create_checkout_session(request):
     YOUR_DOMAIN = "http://localhost:5173"
 
     try:
+        print(cart)
         checkout_session = stripe.checkout.Session.create(
             line_items=append_cart_to_line_items(cart),
             payment_method_types=['card'],
@@ -60,9 +53,10 @@ def create_checkout_session(request):
             success_url=YOUR_DOMAIN + '/success',
             cancel_url=YOUR_DOMAIN + '/cancel',
         )
-        print(cart)
 
     except Exception as e:
         return JsonResponse({'error': str(e)})
+
+    print("ooga booga")
 
     return HttpResponseRedirect(checkout_session.url)
