@@ -51,6 +51,7 @@ export function ShoppingCart(props) {
     fetch(import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API, requestOptions)
       .then((data) => {
         if (data.url) {
+          // console.log(data.url)
           window.location.href = data.url // Redirect to the Stripe checkout session URL
         } else {
           console.error("Error creating checkout session:", data)
@@ -103,17 +104,9 @@ export function ShoppingCart(props) {
       </Box>
       {console.log(JSON.stringify({ cartItems: cartWithIntIds }))}
       {console.log(csrftoken)}
-      <form
-        action={import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API}
-        method="post"
-      >
+      <form onSubmit={sendCartData}>
         <CSRFToken />
-        <Button
-          variant="outline-danger"
-          type="submit"
-          size="sm"
-          onClick={sendCartData}
-        >
+        <Button variant="outline-danger" type="submit" size="sm">
           Checkout
         </Button>
       </form>
