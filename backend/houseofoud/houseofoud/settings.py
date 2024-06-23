@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
+
 CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 
 
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'app.middleware.CSRFMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
