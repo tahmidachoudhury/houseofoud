@@ -33,7 +33,7 @@ a:hover::before {
   transform: scaleX(1);
 }
 
-body{
+body {
   margin: 0;
 }
 
@@ -55,5 +55,3 @@ h1 {
   transform: none;
   visibility: visible;
 }
-
-
