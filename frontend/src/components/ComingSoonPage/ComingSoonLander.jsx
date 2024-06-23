@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack"
 import { ThemeProvider } from "@mui/material/styles"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import TwitterIcon from "@mui/icons-material/X"
+import DrawerAppBar from "./DrawerAppBar"
 
 const Montserrat = createTheme({
   typography: {
@@ -59,6 +60,7 @@ export default function LandingPage() {
         flexDirection: "column",
       }}
     >
+      <DrawerAppBar />
       <Grid
         container
         spacing={0}
