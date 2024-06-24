@@ -95,7 +95,7 @@ export default function LandingPage() {
         <Stack
           direction="row"
           justifyContent="left"
-          spacing={10}
+          spacing={2}
           useFlexGap
           sx={{
             color: "text.secondary",
@@ -109,15 +109,6 @@ export default function LandingPage() {
             sx={{ alignSelf: "center" }}
           >
             <TikTokIcon />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            href="#"
-            target="_blank"
-            aria-label="X"
-            sx={{ alignSelf: "center" }}
-          >
-            <TwitterIcon />
           </IconButton>
           <IconButton
             color="inherit"
