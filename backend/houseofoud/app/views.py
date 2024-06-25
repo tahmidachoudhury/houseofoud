@@ -57,6 +57,4 @@ def create_checkout_session(request):
     except Exception as e:
         return JsonResponse({'error': str(e)})
 
-    print("ooga booga")
-
     return HttpResponseRedirect(checkout_session.url)

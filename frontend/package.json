@@ -19,6 +19,7 @@
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.5.0",
     "animate.css": "^4.1.1",
+    "axios": "^1.7.2",
     "python": "^0.0.4",
     "react": "^18.2.0",
     "react-animate-on-scroll": "^2.1.9",
@@ -37,5 +38,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
-  }
+  },
+  "proxy": "http://localhost:8000"
 }
