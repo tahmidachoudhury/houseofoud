@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Button, Divider, Drawer, List, ListItem } from "@mui/material"
-import { Box, Stack, textAlign } from "@mui/system"
+import { Box, Stack } from "@mui/system"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import { CartItem } from "./CartItem"
+import axios from "axios"
 import { formatCurrency } from "../../utilities/formatCurrency"
 import CSRFToken, { getCookie } from "../../utilities/csrf"
 import allItems from "../../data/allItems.json"
-import { Link } from "react-router-dom"
-import StripeRedirect from "../StripeCheckoutPage/StripeRedirect"
 
 export function ShoppingCart(props) {
   const { closeCart, cartItems } = useShoppingCart()
-  const [mobileOpen, setMobileOpen] = React.useState(false)
   const [data, setData] = useState([])
   const csrftoken = getCookie("csrftoken")
 
@@ -36,43 +34,37 @@ export function ShoppingCart(props) {
     fetchData()
   }, [])
 
-  //-----------------------------------------------------------------
-  function sendCartData(event) {
-    event.preventDefault()
+  const sendCartData = async (event) => {
+    event.preventDefault() // Prevent default form submission
 
     const requestOptions = {
-      method: "POST",
-      body: JSON.stringify({ cartItems: cartWithIntIds }),
       headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": csrftoken,
       },
     }
-    fetch(import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API, requestOptions)
-      .then((data) => {
-        if (data.url) {
-          // console.log(data.url)
-          window.location.href = data.url // Redirect to the Stripe checkout session URL
-        } else {
-          console.error("Error creating checkout session:", data)
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error)
-      })
+
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API,
+        { cartItems: cartWithIntIds },
+        requestOptions
+      )
+
+      if (response.data.url) {
+        window.location.assign(response.data.url) // Redirect to the Stripe checkout session URL
+      } else {
+        console.error("Error creating checkout session:", response.data)
+      }
+    } catch (error) {
+      console.error("Error:", error)
+    }
   }
-  //-----------------------------------------------------------------
+
   const cartWithIntIds = cartItems.map((item) => ({
     ...item,
     id: parseInt(item.id, 10),
   }))
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState)
-  }
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined
 
   const DrawerList = (
     <Box sx={{ width: 450 }} role="presentation">
@@ -102,8 +94,6 @@ export function ShoppingCart(props) {
           )}
         </div>
       </Box>
-      {console.log(JSON.stringify({ cartItems: cartWithIntIds }))}
-      {console.log(csrftoken)}
       <form onSubmit={sendCartData}>
         <CSRFToken />
         <Button variant="outline-danger" type="submit" size="sm">
