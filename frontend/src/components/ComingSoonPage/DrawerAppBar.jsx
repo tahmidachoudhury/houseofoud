@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import IconButton from "@mui/material/IconButton"
 import StoreIcon from "@mui/icons-material/Store"
 import Toolbar from "@mui/material/Toolbar"
+import { Link } from "react-router-dom"
 
 function DrawerAppBar() {
   return (
@@ -12,9 +13,12 @@ function DrawerAppBar() {
       <CssBaseline />
       <AppBar
         component="nav"
-        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
+        sx={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+        }}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <IconButton
             color="black"
             aria-label="open drawer"
@@ -24,6 +28,7 @@ function DrawerAppBar() {
           >
             <StoreIcon />
           </IconButton>
+          <Link to="/home">Home</Link>
         </Toolbar>
       </AppBar>
     </Box>

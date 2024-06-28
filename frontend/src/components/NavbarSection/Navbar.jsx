@@ -112,7 +112,7 @@ export default function DrawerAppBar(props) {
                 color: "#fff",
               }}
             >
-              <Link to="/">
+              <Link to="/home">
                 <Typography variant="h6" component="div">
                   House Of Oud
                 </Typography>
