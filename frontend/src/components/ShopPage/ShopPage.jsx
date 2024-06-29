@@ -48,11 +48,7 @@ function ShopPage() {
         {data.map((product, index) => {
           return (
             <Link to={`/product/${product.id}`} key={product.id}>
-              <Box
-                gridColumn={{ xs: "span 1", sm: "auto" }}
-                sx={{ aspectRatio: "1/1" }}
-                key={index}
-              >
+              <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={index}>
                 <Product
                   key={product.id}
                   url={product.url}

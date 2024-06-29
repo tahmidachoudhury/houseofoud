@@ -51,7 +51,7 @@ CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
 
 CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
 
-ALLOWED_HOSTS = ['houseofoud.uk', 'www.houseofoud.uk']
+ALLOWED_HOSTS = ['houseofoud.uk', 'www.houseofoud.uk', '127.0.0.1']
 
 
 MIDDLEWARE = [

@@ -78,7 +78,11 @@ export default function DrawerAppBar(props) {
     <Box>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar component="nav" position="sticky" sx={{ bgcolor: "#575756" }}>
+        <AppBar
+          component="nav"
+          position="sticky"
+          sx={{ bgcolor: "transparent" }}
+        >
           <Toolbar sx={{ display: "flex" }}>
             <IconButton
               color="inherit"

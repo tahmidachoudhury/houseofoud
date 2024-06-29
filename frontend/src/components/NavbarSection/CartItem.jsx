@@ -48,12 +48,12 @@ export function CartItem(props) {
   if (item == null) return null
 
   return (
-    <Stack direction="horizontal" gap={2}>
+    <Stack direction="horizontal" display="flex" flex={1} gap={2}>
       <img
         src={`../public/${item.url}`}
         style={{ width: "125px", height: "125px", objectFit: "cover" }}
       />
-      <div className="me-auto">
+      <Box flex={3}>
         <div>
           {item.name}
           {/* {props.quantity > 1 && (
@@ -85,8 +85,10 @@ export function CartItem(props) {
             Remove
           </Button>
         </div>
-      </div>
-      <div> {formatCurrency(item.price * props.quantity)}</div>
+      </Box>
+      <Box flex={1} textAlign="center">
+        {formatCurrency(item.price * props.quantity)}
+      </Box>
     </Stack>
   )
 }

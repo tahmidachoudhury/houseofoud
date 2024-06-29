@@ -3,12 +3,13 @@ import allItems from "../../data/allItems.json"
 import { useParams } from "react-router-dom"
 import Box from "@mui/system/Box"
 import { formatCurrency } from "../../utilities/formatCurrency"
-import { Button } from "@mui/material"
+import { Button, Divider } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 import { styled } from "@mui/material/styles"
+import SizeButton from "./SizeButtons"
 
 const ColorButton = styled(Button)({
   color: "white",
@@ -65,32 +66,54 @@ function ProductPage() {
   const quantity = getItemQuantity(id)
 
   return (
-    <Box sx={{ padding: "22px 30px" }}>
-      <Box>
-        <h1>{product.name}</h1>
-        <p>{product.type}</p>
-        <p>{formatCurrency(product.price)}</p>
-        <p>{product.description}</p>
-      </Box>
-      <Box sx={{ border: 1, display: "inline-block" }}>
-        <ColorButton size="small" onClick={() => increaseCartQuantity(id)}>
-          <AddIcon style={{ color: "black" }} />
-        </ColorButton>
-        <span>{quantity}</span>
-        <ColorButton size="small" onClick={() => decreaseCartQuantity(id)}>
-          <RemoveIcon style={{ color: "black" }} />
-        </ColorButton>
-      </Box>
-      <Box>
-        <Button
-          Button
-          variant="outlined"
-          color="error"
-          startIcon={<DeleteIcon />}
-          onClick={() => removeFromCart(id)}
+    <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
+      <img
+        src={`../../../../public/${product.url}`}
+        style={{ width: "50vw" }}
+      />
+      <Box sx={{ padding: "10% 10%" }}>
+        <Box>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <Divider />
+          <p>Type: {product.type}</p>
+          <Divider />
+          <p>{formatCurrency(product.price)}</p>
+          <p>
+            Size:
+            <SizeButton size="6ml" />
+            <SizeButton size="12ml" />
+            <SizeButton size="15ml" />
+          </p>
+          <Divider />
+        </Box>
+        <Box
+          sx={{
+            border: 1,
+            display: "inline-block",
+            borderRadius: "2rem",
+            p: 0.8,
+            my: 2,
+          }}
         >
-          Remove from cart
-        </Button>
+          <ColorButton
+            size="small"
+            onClick={() => increaseCartQuantity(id)}
+            sx={{ borderRadius: "2rem" }}
+          >
+            <AddIcon style={{ color: "black", fontSize: "1rem" }} />
+          </ColorButton>
+          <span style={{ fontSize: "12px" }}>{quantity}</span>
+          <ColorButton
+            onClick={() => decreaseCartQuantity(id)}
+            sx={{ borderRadius: "2rem" }}
+          >
+            <RemoveIcon style={{ color: "black", fontSize: "1rem" }} />
+          </ColorButton>
+        </Box>
+        <Box border={1} textAlign="center" py={1} borderRadius={1.8}>
+          Add to cart
+        </Box>
       </Box>
     </Box>
   )
