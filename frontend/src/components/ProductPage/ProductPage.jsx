@@ -66,10 +66,22 @@ function ProductPage() {
   const quantity = getItemQuantity(id)
 
   return (
-    <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
-      <img
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      mt={{ xs: "58px", md: "0" }}
+    >
+      <Box
+        component="img"
         src={`../../../../public/${product.url}`}
-        style={{ width: "50vw" }}
+        sx={{
+          width: { xs: "100vw", md: "50vw" },
+          px: { xs: "3%", md: 0 },
+          height: "100%",
+          objectFit: "cover",
+
+          borderRadius: { xs: "2.2rem", md: 0 },
+        }}
       />
       <Box sx={{ padding: "10% 10%" }}>
         <Box>

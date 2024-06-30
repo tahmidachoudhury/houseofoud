@@ -80,8 +80,10 @@ export default function DrawerAppBar(props) {
       <HideOnScroll {...props}>
         <AppBar
           component="nav"
-          position="sticky"
-          sx={{ bgcolor: "transparent" }}
+          sx={{
+            bgcolor: "transparent",
+            boxShadow: "none",
+          }}
         >
           <Toolbar sx={{ display: "flex" }}>
             <IconButton
@@ -95,7 +97,9 @@ export default function DrawerAppBar(props) {
             </IconButton>
 
             <Box sx={{ display: { xs: "none", sm: "block" }, flex: 1 }}>
-              <Button sx={{ color: "#fff" }}>
+              <Button
+                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
+              >
                 <Link to="/shop">Shop</Link>
               </Button>
             </Box>
@@ -130,17 +134,25 @@ export default function DrawerAppBar(props) {
                 textAlign: "right",
               }}
             >
-              <Button sx={{ color: "#fff" }}>
+              <Button
+                sx={{
+                  color: "#fff",
+                  fontSize: { sm: "10px", md: "13px" },
+                }}
+              >
                 <Link to={`/liked`}>liked</Link>
               </Button>
 
-              <Button sx={{ color: "#fff" }}>
+              <Button
+                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
+              >
                 <Link to={`/account`}>account</Link>
               </Button>
 
-              {/* <ShoppingCart /> */}
-
-              <Button sx={{ color: "#fff" }} onClick={openCart}>
+              <Button
+                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
+                onClick={openCart}
+              >
                 <Link>cart({cartQuantity})</Link>
               </Button>
             </Box>
