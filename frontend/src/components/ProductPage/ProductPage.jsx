@@ -3,12 +3,13 @@ import allItems from "../../data/allItems.json"
 import { useParams } from "react-router-dom"
 import Box from "@mui/system/Box"
 import { formatCurrency } from "../../utilities/formatCurrency"
-import { Button } from "@mui/material"
+import { Button, Divider } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 import { styled } from "@mui/material/styles"
+import SizeButtons from "./SizeButtons"
 
 const ColorButton = styled(Button)({
   color: "white",
@@ -19,7 +20,25 @@ const ColorButton = styled(Button)({
     boxShadow: "none",
     backgroundColor: "white",
   },
+  padding: 0,
 })
+
+const AddToCart = (props) => (
+  <Button
+    sx={{
+      width: "100%",
+      height: "100%",
+      py: 1,
+      backgroundColor: "#990000",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "#660000", // Darker maroon red on hover
+      },
+    }}
+  >
+    {props.children}
+  </Button>
+)
 
 function ProductPage() {
   const [data, setData] = useState([])
@@ -65,32 +84,58 @@ function ProductPage() {
   const quantity = getItemQuantity(id)
 
   return (
-    <Box sx={{ padding: "22px 30px" }}>
-      <Box>
-        <h1>{product.name}</h1>
-        <p>{product.type}</p>
-        <p>{formatCurrency(product.price)}</p>
-        <p>{product.description}</p>
-      </Box>
-      <Box sx={{ border: 1, display: "inline-block" }}>
-        <ColorButton size="small" onClick={() => increaseCartQuantity(id)}>
-          <AddIcon style={{ color: "black" }} />
-        </ColorButton>
-        <span>{quantity}</span>
-        <ColorButton size="small" onClick={() => decreaseCartQuantity(id)}>
-          <RemoveIcon style={{ color: "black" }} />
-        </ColorButton>
-      </Box>
-      <Box>
-        <Button
-          Button
-          variant="outlined"
-          color="error"
-          startIcon={<DeleteIcon />}
-          onClick={() => removeFromCart(id)}
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      mt={{ xs: "58px", md: "0" }}
+    >
+      <Box
+        component="img"
+        src={`../../../../public/${product.url}`}
+        sx={{
+          width: { xs: "100vw", md: "50vw" },
+          px: { xs: "3%", md: 0 },
+          height: "100%",
+          objectFit: "cover",
+
+          borderRadius: { xs: "2.2rem", md: 0 },
+        }}
+      />
+      <Box sx={{ padding: "10% 10%" }}>
+        <Box>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <Divider />
+          <p>Type: {product.type}</p>
+          <Divider />
+          <p>{formatCurrency(product.price)}</p>
+          <p>
+            Size:
+            <SizeButtons />
+          </p>
+          <Divider />
+        </Box>
+        <Box
+          sx={{
+            border: 1,
+            display: "inline-block",
+            borderRadius: "2rem",
+            py: 1,
+            my: 2,
+            overflow: "hidden",
+          }}
         >
-          Remove from cart
-        </Button>
+          <ColorButton size="small" onClick={() => increaseCartQuantity(id)}>
+            <AddIcon style={{ color: "black", fontSize: "0.8rem" }} />
+          </ColorButton>
+          <span style={{ fontSize: "12px" }}>{quantity}</span>
+          <ColorButton onClick={() => decreaseCartQuantity(id)}>
+            <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
+          </ColorButton>
+        </Box>
+        <Box border={1} textAlign="center" borderRadius={1.8}>
+          <AddToCart>Add to cart</AddToCart>
+        </Box>
       </Box>
     </Box>
   )

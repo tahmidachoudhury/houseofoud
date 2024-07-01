@@ -178,6 +178,15 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
+            href="#"
+            target="_blank"
+            aria-label="X"
+            sx={{ alignSelf: "center" }}
+          >
+            <TwitterIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
             href="https://www.instagram.com/houseofoudlondon?igsh=MWZ6NDhmZTczdTE2Mg=="
             target="_blank"
             aria-label="Instagram"

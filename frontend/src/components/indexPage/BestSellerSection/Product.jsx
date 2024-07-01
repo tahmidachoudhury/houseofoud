@@ -1,35 +1,31 @@
-import React from "react";
-import Grid from '@mui/system/Unstable_Grid';
-import Box from '@mui/system/Box';
-import "./Product.css";
+import React from "react"
+import Grid from "@mui/system/Unstable_Grid"
+import Box from "@mui/system/Box"
+import "./Product.css"
 import Typography from "@mui/material/Typography"
 
-
-function Product(props){
+function Product(props) {
   const cntrStyle = {
-    width: '100%',
-    height: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    width: "100%",
+    height: "100%",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
     backgroundImage: `url(${props.url})`,
-    overflow: 'hidden', 
-    aspectRatio: '1',
-  };
-  
+    overflow: "hidden",
+    aspectRatio: "1/1",
+  }
 
   const productInfo = {
     padding: "15px 0 ",
     borderTop: "1px solid black",
     borderBottom: "1px solid black",
-    marginTop: "12px"
+    marginTop: "12px",
   }
 
   return (
+    <Box width="100%" height="100%" display="flex" flexDirection="column">
+      <div className="image-container" style={{ ...cntrStyle }} />
 
-    <Box width='100%' height='100%' display='flex' flexDirection='column'>
-
-      <div className="image-container" style={{...cntrStyle}} />
-      
       <div style={productInfo}>
         <Typography gutterBottom>{props.type}</Typography>
         <Typography gutterBottom>{props.name}</Typography>
@@ -42,10 +38,8 @@ function Product(props){
           </Grid>
         </Grid>
       </div>
-
     </Box>
   )
 }
 
-
-export default Product;
+export default Product

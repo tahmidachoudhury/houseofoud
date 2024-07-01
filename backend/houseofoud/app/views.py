@@ -53,8 +53,8 @@ def create_checkout_session(request):
             success_url=YOUR_DOMAIN + '/success',
             cancel_url=YOUR_DOMAIN + '/cancel',
         )
+        print("Stripe URL", checkout_session.url)
+        return JsonResponse({'url': checkout_session.url})
 
     except Exception as e:
         return JsonResponse({'error': str(e)})
-
-    return HttpResponseRedirect(checkout_session.url)

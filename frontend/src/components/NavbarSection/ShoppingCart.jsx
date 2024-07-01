@@ -67,7 +67,7 @@ export function ShoppingCart(props) {
   }))
 
   const DrawerList = (
-    <Box sx={{ width: 450 }} role="presentation">
+    <Box sx={{ width: "100%" }} role="presentation">
       <List>
         <ListItem>
           <h2>Cart</h2>
@@ -105,7 +105,14 @@ export function ShoppingCart(props) {
 
   return (
     <div>
-      <Drawer open={props.open} onClose={closeCart} anchor="right">
+      <Drawer
+        PaperProps={{
+          sx: { width: { xs: "95%", sm: "70%", md: "50%", lg: "30%" } },
+        }}
+        open={props.open}
+        onClose={closeCart}
+        anchor="right"
+      >
         {DrawerList}
       </Drawer>
     </div>
