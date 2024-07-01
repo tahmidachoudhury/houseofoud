@@ -9,7 +9,7 @@ import { useShoppingCart } from "../../context/ShoppingCartContext"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 import { styled } from "@mui/material/styles"
-import SizeButton from "./SizeButtons"
+import SizeButtons from "./SizeButtons"
 
 const ColorButton = styled(Button)({
   color: "white",
@@ -20,7 +20,25 @@ const ColorButton = styled(Button)({
     boxShadow: "none",
     backgroundColor: "white",
   },
+  padding: 0,
 })
+
+const AddToCart = (props) => (
+  <Button
+    sx={{
+      width: "100%",
+      height: "100%",
+      py: 1,
+      backgroundColor: "#990000",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "#660000", // Darker maroon red on hover
+      },
+    }}
+  >
+    {props.children}
+  </Button>
+)
 
 function ProductPage() {
   const [data, setData] = useState([])
@@ -93,9 +111,7 @@ function ProductPage() {
           <p>{formatCurrency(product.price)}</p>
           <p>
             Size:
-            <SizeButton size="6ml" />
-            <SizeButton size="12ml" />
-            <SizeButton size="15ml" />
+            <SizeButtons />
           </p>
           <Divider />
         </Box>
@@ -104,27 +120,21 @@ function ProductPage() {
             border: 1,
             display: "inline-block",
             borderRadius: "2rem",
-            p: 0.8,
+            py: 1,
             my: 2,
+            overflow: "hidden",
           }}
         >
-          <ColorButton
-            size="small"
-            onClick={() => increaseCartQuantity(id)}
-            sx={{ borderRadius: "2rem" }}
-          >
-            <AddIcon style={{ color: "black", fontSize: "1rem" }} />
+          <ColorButton size="small" onClick={() => increaseCartQuantity(id)}>
+            <AddIcon style={{ color: "black", fontSize: "0.8rem" }} />
           </ColorButton>
           <span style={{ fontSize: "12px" }}>{quantity}</span>
-          <ColorButton
-            onClick={() => decreaseCartQuantity(id)}
-            sx={{ borderRadius: "2rem" }}
-          >
-            <RemoveIcon style={{ color: "black", fontSize: "1rem" }} />
+          <ColorButton onClick={() => decreaseCartQuantity(id)}>
+            <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
           </ColorButton>
         </Box>
-        <Box border={1} textAlign="center" py={1} borderRadius={1.8}>
-          Add to cart
+        <Box border={1} textAlign="center" borderRadius={1.8}>
+          <AddToCart>Add to cart</AddToCart>
         </Box>
       </Box>
     </Box>
