@@ -23,22 +23,16 @@ const ColorButton = styled(Button)({
   padding: 0,
 })
 
-const AddToCart = (props) => (
-  <Button
-    sx={{
-      width: "100%",
-      height: "100%",
-      py: 1,
-      backgroundColor: "#990000",
-      color: "white",
-      "&:hover": {
-        backgroundColor: "#660000", // Darker maroon red on hover
-      },
-    }}
-  >
-    {props.children}
-  </Button>
-)
+const AddToCart = styled(Button)({
+  width: "100%",
+  height: "100%",
+  padding: "8px",
+  backgroundColor: "#990000",
+  color: "white",
+  "&:hover": {
+    backgroundColor: "#660000", // Darker maroon red on hover
+  },
+})
 
 function ProductPage() {
   const [data, setData] = useState([])
@@ -76,12 +70,12 @@ function ProductPage() {
   }
 
   const {
-    getItemQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-    removeFromCart,
+    getStagedItemQuantity,
+    addTempItem,
+    decreaseTempItem,
+    confirmCartItem,
   } = useShoppingCart()
-  const quantity = getItemQuantity(id)
+  const quantity = getStagedItemQuantity(id)
 
   return (
     <Box
@@ -125,16 +119,16 @@ function ProductPage() {
             overflow: "hidden",
           }}
         >
-          <ColorButton size="small" onClick={() => increaseCartQuantity(id)}>
+          <ColorButton size="small" onClick={() => addTempItem(id)}>
             <AddIcon style={{ color: "black", fontSize: "0.8rem" }} />
           </ColorButton>
           <span style={{ fontSize: "12px" }}>{quantity}</span>
-          <ColorButton onClick={() => decreaseCartQuantity(id)}>
+          <ColorButton onClick={() => decreaseTempItem(id)}>
             <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
           </ColorButton>
         </Box>
         <Box border={1} textAlign="center" borderRadius={1.8}>
-          <AddToCart>Add to cart</AddToCart>
+          <AddToCart onClick={() => confirmCartItem(id)}>Add to cart</AddToCart>
         </Box>
       </Box>
     </Box>
