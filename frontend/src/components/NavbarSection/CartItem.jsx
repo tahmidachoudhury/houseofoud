@@ -54,13 +54,9 @@ export function CartItem(props) {
         style={{ width: "125px", height: "125px", objectFit: "cover" }}
       />
       <Box flex={3}>
-        <div>
-          {item.name}
-          {/* {props.quantity > 1 && (
-          )} */}
-        </div>
-        <div>{`Size: `}</div>
-        <div className="text-muted">{formatCurrency(item.price)}</div>
+        <div>{item.name}</div>
+        <div>{props.size}</div>
+        <div className="text-muted">{formatCurrency(props.price)}</div>
         <div className="text-muted">
           <Box sx={{ border: 1, display: "inline-block" }}>
             <ColorButton
@@ -87,7 +83,7 @@ export function CartItem(props) {
         </div>
       </Box>
       <Box flex={1} textAlign="center">
-        {formatCurrency(item.price * props.quantity)}
+        {formatCurrency(props.price * props.quantity)}
       </Box>
     </Stack>
   )

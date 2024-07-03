@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import Box from "@mui/system/Box"
 import { formatCurrency } from "../../utilities/formatCurrency"
 import { Button, Divider } from "@mui/material"
-import DeleteIcon from "@mui/icons-material/Delete"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
@@ -35,8 +34,11 @@ const AddToCart = styled(Button)({
 })
 
 function ProductPage() {
+  const { openCart } = useShoppingCart()
   const [data, setData] = useState([])
   const { id } = useParams()
+  const [price, setPrice] = useState(6)
+  const [selectedSize, setSelectedSize] = useState("3ml")
 
   useEffect(() => {
     async function fetchData() {
@@ -69,13 +71,25 @@ function ProductPage() {
     )
   }
 
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size)
+  }
+
+  const handlePrice = (p) => {
+    setPrice(p)
+  }
+
   const {
     getStagedItemQuantity,
+    getItemQuantity,
     addTempItem,
     decreaseTempItem,
+    decreaseCartQuantity,
+    increaseCartQuantity,
     confirmCartItem,
   } = useShoppingCart()
-  const quantity = getStagedItemQuantity(id)
+  const tempQuantity = getStagedItemQuantity(id)
+  const cartQuantity = getItemQuantity(id)
 
   return (
     <Box
@@ -102,10 +116,13 @@ function ProductPage() {
           <Divider />
           <p>Type: {product.type}</p>
           <Divider />
-          <p>{formatCurrency(product.price)}</p>
+          <p>{formatCurrency(price)}</p>
           <p>
             Size:
-            <SizeButtons />
+            <SizeButtons
+              onSizeSelect={handleSizeSelect}
+              onPriceSelect={handlePrice}
+            />
           </p>
           <Divider />
         </Box>
@@ -119,11 +136,23 @@ function ProductPage() {
             overflow: "hidden",
           }}
         >
-          <ColorButton size="small" onClick={() => addTempItem(id)}>
+          <ColorButton
+            size="small"
+            onClick={() => {
+              addTempItem(id, selectedSize, price)
+            }}
+          >
             <AddIcon style={{ color: "black", fontSize: "0.8rem" }} />
           </ColorButton>
-          <span style={{ fontSize: "12px" }}>{quantity}</span>
-          <ColorButton onClick={() => decreaseTempItem(id)}>
+          <span style={{ fontSize: "12px" }}>
+            {tempQuantity || cartQuantity}
+          </span>
+          <ColorButton
+            onClick={() => {
+              decreaseTempItem(id, selectedSize, price)
+              decreaseCartQuantity(id)
+            }}
+          >
             <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
           </ColorButton>
         </Box>

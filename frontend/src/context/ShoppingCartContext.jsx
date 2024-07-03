@@ -31,14 +31,19 @@ export function ShoppingCartProvider({ children }) {
   function getStagedItemQuantity(id) {
     return tempItems.find((item) => item.id === id)?.quantity || 0
   }
-  function increaseCartQuantity(id) {
+  function increaseCartQuantity(id, size, price) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1 }]
+        return [...currItems, { id, size: size, price: price, quantity: 1 }]
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1 }
+            return {
+              ...item,
+              size: item.size,
+              price: item.price,
+              quantity: item.quantity + 1,
+            }
           } else {
             return item
           }
@@ -53,7 +58,12 @@ export function ShoppingCartProvider({ children }) {
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity - 1 }
+            return {
+              ...item,
+              size: item.size,
+              price: item.price,
+              quantity: item.quantity - 1,
+            }
           } else {
             return item
           }
@@ -61,14 +71,19 @@ export function ShoppingCartProvider({ children }) {
       }
     })
   }
-  function addTempItem(id) {
+  function addTempItem(id, size, price) {
     setTempItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1 }]
+        return [...currItems, { id, size: size, price: price, quantity: 1 }]
       } else {
         return currItems.map((item) => {
-          if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1 }
+          if (item.id === id && item.size == size && item.price == price) {
+            return {
+              ...item,
+              size: item.size,
+              price: item.price,
+              quantity: item.quantity + 1,
+            }
           } else {
             return item
           }
@@ -78,12 +93,12 @@ export function ShoppingCartProvider({ children }) {
   }
   function decreaseTempItem(id) {
     setTempItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1 }]
+      if (currItems.find((item) => item.id === id)?.quantity === 1) {
+        return currItems.filter((item) => item.id !== id)
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity - 1 }
+            return { ...item, size: item.size, quantity: item.quantity - 1 }
           } else {
             return item
           }
@@ -99,7 +114,12 @@ export function ShoppingCartProvider({ children }) {
         if (existingCartItem) {
           return currItems.map((item) => {
             if (item.id === id) {
-              return { ...item, quantity: item.quantity + tempItem.quantity }
+              return {
+                ...item,
+                size: item.size,
+                price: item.price,
+                quantity: item.quantity + tempItem.quantity,
+              }
             } else {
               return item
             }
