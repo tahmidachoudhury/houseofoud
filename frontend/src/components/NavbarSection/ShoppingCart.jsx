@@ -6,6 +6,7 @@ import { CartItem } from "./CartItem"
 import axios from "axios"
 import { formatCurrency } from "../../utilities/formatCurrency"
 import CSRFToken, { getCookie } from "../../utilities/csrf"
+import CloseIcon from "@mui/icons-material/Close"
 import allItems from "../../data/allItems.json"
 
 export function ShoppingCart(props) {
@@ -69,9 +70,17 @@ export function ShoppingCart(props) {
   const DrawerList = (
     <Box sx={{ width: "100%" }} role="presentation">
       <List>
-        <ListItem>
+        <Box display="flex" justifyContent="space-between">
           <h2>Cart</h2>
-        </ListItem>
+          <CloseIcon
+            onClick={closeCart}
+            sx={{
+              alignSelf: "center",
+              fontSize: "2rem",
+              display: { xs: "block", sm: "none" },
+            }}
+          />
+        </Box>
 
         <Stack>
           {cartItems.map((item) => (
@@ -88,12 +97,12 @@ export function ShoppingCart(props) {
           Total{" "}
           {formatCurrency(
             cartItems.reduce((total, cartItem) => {
-              const item = data.find((i) => i.id === Number(cartItem.id))
-              return total + (item?.price || 0) * cartItem.quantity
+              return total + (cartItem?.price || 0) * cartItem.quantity
             }, 0)
           )}
         </div>
       </Box>
+      {console.log({ cartItems: cartWithIntIds })}
       <form onSubmit={sendCartData}>
         <CSRFToken />
         <Button variant="outline-danger" type="submit" size="sm">
@@ -107,7 +116,7 @@ export function ShoppingCart(props) {
     <div>
       <Drawer
         PaperProps={{
-          sx: { width: { xs: "95%", sm: "70%", md: "50%", lg: "30%" } },
+          sx: { width: { xs: "100%", sm: "70%", md: "50%", lg: "30%" } },
         }}
         open={props.open}
         onClose={closeCart}

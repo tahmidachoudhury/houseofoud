@@ -87,7 +87,7 @@ export default function DrawerAppBar(props) {
         >
           <Toolbar sx={{ display: "flex" }}>
             <IconButton
-              color="inherit"
+              color="black"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
@@ -104,13 +104,13 @@ export default function DrawerAppBar(props) {
               </Button>
             </Box>
 
-            <IconButton
-              color="inherit"
+            {/* <IconButton
+              color="black"
               edge="start"
               sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
             >
               <SearchIcon />
-            </IconButton>
+            </IconButton> */}
 
             <Button
               sx={{
@@ -145,12 +145,6 @@ export default function DrawerAppBar(props) {
 
               <Button
                 sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
-              >
-                <Link to={`/account`}>account</Link>
-              </Button>
-
-              <Button
-                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
                 onClick={openCart}
               >
                 <Link>cart({cartQuantity})</Link>
@@ -158,7 +152,7 @@ export default function DrawerAppBar(props) {
             </Box>
 
             <IconButton
-              color="inherit"
+              color="black"
               edge="start"
               sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
             >
@@ -166,15 +160,7 @@ export default function DrawerAppBar(props) {
             </IconButton>
 
             <IconButton
-              color="inherit"
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <AccountCircleIcon />
-            </IconButton>
-
-            <IconButton
-              color="inherit"
+              color="black"
               onClick={() => {
                 openCart()
               }}

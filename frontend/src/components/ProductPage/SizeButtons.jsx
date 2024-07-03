@@ -30,32 +30,40 @@ const ToggleButton = ({ isActive, onClick, children }) => {
   )
 }
 
-const ButtonGroup = () => {
-  const [activeButton, setActiveButton] = useState(null)
+function ButtonGroup({ onSizeSelect, onPriceSelect }) {
+  const [activeButton, setActiveButton] = useState(1)
 
-  const handleClick = (buttonId) => {
+  const handleClick = (buttonId, size, price) => {
     setActiveButton(buttonId)
+    onSizeSelect(size)
+    onPriceSelect(price)
   }
 
   return (
     <div>
       <ToggleButton
         isActive={activeButton === 1}
-        onClick={() => handleClick(1)}
+        onClick={() => handleClick(1, "3ml", 6)}
+      >
+        3ml
+      </ToggleButton>
+      <ToggleButton
+        isActive={activeButton === 2}
+        onClick={() => handleClick(2, "6ml", 10)}
       >
         6ml
       </ToggleButton>
       <ToggleButton
-        isActive={activeButton === 2}
-        onClick={() => handleClick(2)}
+        isActive={activeButton === 3}
+        onClick={() => handleClick(3, "12ml", 18)}
       >
         12ml
       </ToggleButton>
       <ToggleButton
-        isActive={activeButton === 3}
-        onClick={() => handleClick(3)}
+        isActive={activeButton === 4}
+        onClick={() => handleClick(4, "24ml", 35)}
       >
-        15ml
+        24ml
       </ToggleButton>
     </div>
   )
