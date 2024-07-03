@@ -97,7 +97,12 @@ export default function DrawerAppBar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={() => handleDrawerToggle()}
-              sx={{ m: 0, display: { sm: "none" } }}
+              sx={{
+                m: 0,
+                display: { sm: "none" },
+                flex: 1,
+                justifyContent: "left",
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -117,33 +122,27 @@ export default function DrawerAppBar(props) {
             >
               <SearchIcon />
             </IconButton> */}
-            <Box
+
+            <Button
               sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
+                textAlign: "center",
+                color: "#fff",
+                width: "fit-content",
               }}
             >
-              <Button
-                sx={{
-                  textAlign: "center",
-                  color: "#fff",
-                  width: "fit-content",
-                }}
-              >
-                <Link to="/home">
-                  <Typography variant="h6" component="div">
-                    House of oud
-                  </Typography>
-                </Link>
-              </Button>
-            </Box>
+              <Link to="/home">
+                <Typography variant="h6" component="div">
+                  House of oud
+                </Typography>
+              </Link>
+            </Button>
 
             <Box
               sx={{
                 display: { xs: "none", sm: "flex" },
                 flex: 1,
                 textAlign: "right",
+                justifyContent: "right",
               }}
             >
               <Button
@@ -162,7 +161,11 @@ export default function DrawerAppBar(props) {
                 <Link>cart({cartQuantity})</Link>
               </Button>
             </Box>
-            <Box display={{ xs: "flex", sm: "none" }}>
+            <Box
+              display={{ xs: "flex", sm: "none" }}
+              justifyContent="right"
+              flex={1.26}
+            >
               <IconButton color="black" edge="start" sx={{ m: 0, p: 0.75 }}>
                 <FavoriteBorderIcon />
               </IconButton>
