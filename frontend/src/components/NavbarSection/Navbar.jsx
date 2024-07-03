@@ -81,16 +81,22 @@ export default function DrawerAppBar(props) {
         <AppBar
           component="nav"
           sx={{
-            bgcolor: "transparent",
+            bgcolor: { xs: "transparent" },
             boxShadow: "none",
+            position: { xs: "relative", sm: "fixed" },
           }}
         >
-          <Toolbar sx={{ display: "flex" }}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
             <IconButton
               color="black"
               aria-label="open drawer"
               edge="start"
-              onClick={handleDrawerToggle}
+              onClick={() => handleDrawerToggle()}
               sx={{ m: 0, display: { sm: "none" } }}
             >
               <MenuIcon />
@@ -111,25 +117,31 @@ export default function DrawerAppBar(props) {
             >
               <SearchIcon />
             </IconButton> */}
-
-            <Button
+            <Box
               sx={{
-                display: { xs: "block" },
-                flex: 1,
-                textAlign: "center",
-                color: "#fff",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              <Link to="/home">
-                <Typography variant="h6" component="div">
-                  House Of Oud
-                </Typography>
-              </Link>
-            </Button>
+              <Button
+                sx={{
+                  textAlign: "center",
+                  color: "#fff",
+                  width: "fit-content",
+                }}
+              >
+                <Link to="/home">
+                  <Typography variant="h6" component="div">
+                    House of oud
+                  </Typography>
+                </Link>
+              </Button>
+            </Box>
 
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", sm: "flex" },
                 flex: 1,
                 textAlign: "right",
               }}
@@ -150,25 +162,22 @@ export default function DrawerAppBar(props) {
                 <Link>cart({cartQuantity})</Link>
               </Button>
             </Box>
+            <Box display={{ xs: "flex", sm: "none" }}>
+              <IconButton color="black" edge="start" sx={{ m: 0, p: 0.75 }}>
+                <FavoriteBorderIcon />
+              </IconButton>
 
-            <IconButton
-              color="black"
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <FavoriteBorderIcon />
-            </IconButton>
-
-            <IconButton
-              color="black"
-              onClick={() => {
-                openCart()
-              }}
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <ShoppingBagTwoToneIcon />
-            </IconButton>
+              <IconButton
+                color="black"
+                onClick={() => {
+                  openCart()
+                }}
+                edge="start"
+                sx={{ m: 0, p: 0.75 }}
+              >
+                <ShoppingBagTwoToneIcon />
+              </IconButton>
+            </Box>
           </Toolbar>
         </AppBar>
       </HideOnScroll>

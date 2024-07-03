@@ -105,7 +105,20 @@ export function ShoppingCart(props) {
       {console.log({ cartItems: cartWithIntIds })}
       <form onSubmit={sendCartData}>
         <CSRFToken />
-        <Button variant="outline-danger" type="submit" size="sm">
+        <Button
+          variant="outline-danger"
+          type="submit"
+          size="sm"
+          sx={{
+            width: "100%",
+            padding: "8px",
+            backgroundColor: "#990000",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "#660000", // Darker maroon red on hover
+            },
+          }}
+        >
           Checkout
         </Button>
       </form>

@@ -31,7 +31,7 @@ function ShopPage() {
   }, [])
   return (
     <Box sx={{ padding: "22px 30px" }}>
-      <Box textAlign="center" paddingTop="3rem" paddingBottom="1rem">
+      <Box textAlign="center" paddingTop={{ sm: "3rem" }} paddingBottom="1rem">
         <Typography variant="h4" gutterBottom>
           All Fragrances
         </Typography>

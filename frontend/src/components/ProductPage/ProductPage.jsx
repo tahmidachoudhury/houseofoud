@@ -92,11 +92,7 @@ function ProductPage() {
   const cartQuantity = getItemQuantity(id)
 
   return (
-    <Box
-      display="flex"
-      flexDirection={{ xs: "column", md: "row" }}
-      mt={{ xs: "58px", md: "0" }}
-    >
+    <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
       <Box
         component="img"
         src={`../../../../public/${product.url}`}
@@ -157,7 +153,14 @@ function ProductPage() {
           </ColorButton>
         </Box>
         <Box border={1} textAlign="center" borderRadius={1.8}>
-          <AddToCart onClick={() => confirmCartItem(id)}>Add to cart</AddToCart>
+          <AddToCart
+            onClick={() => {
+              confirmCartItem(id)
+              openCart()
+            }}
+          >
+            Add to cart
+          </AddToCart>
         </Box>
       </Box>
     </Box>
