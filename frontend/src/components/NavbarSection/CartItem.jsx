@@ -60,13 +60,21 @@ export function CartItem(props) {
         <div className="text-muted">{formatCurrency(props.price)}</div>
         <div className="text-muted">
           <Box sx={{ border: 1, display: "inline-block" }}>
-            <ColorButton onClick={() => increaseCartQuantity(props.id)}>
+            <ColorButton
+              onClick={() =>
+                increaseCartQuantity(props.id, props.size, props.price)
+              }
+            >
               <AddIcon
                 style={{ color: "black", fontSize: "0.8rem", padding: 0 }}
               />
             </ColorButton>
             <span>{props.quantity}</span>
-            <ColorButton onClick={() => decreaseCartQuantity(props.id)}>
+            <ColorButton
+              onClick={() =>
+                decreaseCartQuantity(props.id, props.size, props.price)
+              }
+            >
               <RemoveIcon style={{ color: "black", fontSize: "0.8rem" }} />
             </ColorButton>
           </Box>
@@ -80,7 +88,7 @@ export function CartItem(props) {
         <Button
           variant="outline-danger"
           size="sm"
-          onClick={() => removeFromCart(item.id)}
+          onClick={() => removeFromCart(item.id, props.size, props.price)}
         >
           Remove
         </Button>

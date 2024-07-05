@@ -33,7 +33,9 @@ export function ShoppingCartProvider({ children }) {
   }
   function increaseCartQuantity(id, size, price) {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
+      if (
+        currItems.find((item) => item.id === id && item.size === size) == null
+      ) {
         return [...currItems, { id, size: size, price: price, quantity: 1 }]
       } else {
         return currItems.map((item) => {
@@ -51,13 +53,16 @@ export function ShoppingCartProvider({ children }) {
       }
     })
   }
-  function decreaseCartQuantity(id) {
+  function decreaseCartQuantity(id, price) {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id)?.quantity === 1) {
+      if (
+        currItems.find((item) => item.id === id && item.price === price)
+          ?.quantity === 1
+      ) {
         return currItems.filter((item) => item.id !== id)
       } else {
         return currItems.map((item) => {
-          if (item.id === id) {
+          if (item.id === id && item.price === price) {
             return {
               ...item,
               size: item.size,
@@ -73,8 +78,10 @@ export function ShoppingCartProvider({ children }) {
   }
   function addTempItem(id, size, price) {
     setTempItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, size: size, price: price, quantity: 1 }]
+      if (
+        currItems.find((item) => item.id === id && item.price === price) == null
+      ) {
+        return [...currItems, { id, size, price, quantity: 1 }]
       } else {
         return currItems.map((item) => {
           if (item.id === id && item.size == size && item.price == price) {
@@ -91,9 +98,12 @@ export function ShoppingCartProvider({ children }) {
       }
     })
   }
-  function decreaseTempItem(id) {
+  function decreaseTempItem(id, size, price) {
     setTempItems((currItems) => {
-      if (currItems.find((item) => item.id === id)?.quantity === 1) {
+      if (
+        currItems.find((item) => item.id === id && item.price === price)
+          ?.quantity === 1
+      ) {
         return currItems.filter((item) => item.id !== id)
       } else {
         return currItems.map((item) => {
@@ -106,11 +116,13 @@ export function ShoppingCartProvider({ children }) {
       }
     })
   }
-  function confirmCartItem(id) {
+  function confirmCartItem(id, size, price) {
     setCartItems((currItems) => {
       const tempItem = tempItems.find((item) => item.id === id)
       if (tempItem) {
-        const existingCartItem = currItems.find((item) => item.id === id)
+        const existingCartItem = currItems.find(
+          (item) => item.id === id && item.size == size && item.price == price
+        )
         if (existingCartItem) {
           return currItems.map((item) => {
             if (item.id === id) {
@@ -132,9 +144,9 @@ export function ShoppingCartProvider({ children }) {
     })
     setTempItems((currItems) => currItems.filter((item) => item.id !== id))
   }
-  function removeFromCart(id) {
+  function removeFromCart(id, size, price) {
     setCartItems((currItems) => {
-      return currItems.filter((item) => Number(item.id) !== id)
+      return currItems.filter((item) => !(item.id === id && item.size === size))
     })
   }
 
