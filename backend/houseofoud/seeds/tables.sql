@@ -33,3 +33,19 @@ INSERT INTO app_review (stars, subject, content, name) VALUES (5, 'Premium.', 'T
 
 INSERT INTO app_user (username, email, password) VALUES ('tahmid', 'tahmid@tahmid.com', 'mashallah10');
 INSERT INTO app_user (username, email, password) VALUES ('new_user', 'newuser@gmail.com', 'hello123');  
+
+
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (2, '3ml', 'price_1PaLOM00JqWikrEqPjbMVxQC', 600, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (2, '6ml', 'price_1PaLOj00JqWikrEqC3668voq', 1000, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (2, '12ml', 'price_1PaLPD00JqWikrEqdpSCikKH', 1800, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (2, '24ml', 'price_1PaLPn00JqWikrEqgDx8PyCm', 3500, 'gbp'); 
+
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (3, '3ml', 'price_1PaLMP00JqWikrEq4SJ1f1be', 600, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (3, '6ml', 'price_1PaLMb00JqWikrEqyBVPQIrE', 1000, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (3, '12ml', 'price_1PaLNI00JqWikrEqLj1iYPnp', 1800, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (3, '24ml', 'price_1PaLNn00JqWikrEqZcwirGJr', 3500, 'gbp');
+
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (4, '3ml', 'price_1PaLKR00JqWikrEqVRNdvfSI', 600, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (4, '6ml', 'price_1PaLKt00JqWikrEqChDfNMqM', 1000, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (4, '12ml', 'price_1PaLLD00JqWikrEqD3oTFF6b', 1800, 'gbp'); 
+INSERT INTO app_price (product_id, size, stripe_price_id, unit_amount, currency) VALUES (4, '24ml', 'price_1PaLLa00JqWikrEqOCVAT0uB', 3500, 'gbp');

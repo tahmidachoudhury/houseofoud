@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STRIPE_SECRET_KEY = 'sk_test_51POxdB00JqWikrEqzU7AG6ZjDen08OaA2vDcMPXFvPjLFuO1YYkhejuntXxUQV9987yBCt9n6YuCl6tqiLY59UYV00elGWx1ZR'
+STRIPE_SECRET_KEY = os.getenv('STRIPE_API_KEY')
 
 PRODUCT_PRICE = 'price_1PT4ev00JqWikrEqWiluna19'
 

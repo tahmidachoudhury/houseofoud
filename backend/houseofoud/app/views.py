@@ -17,24 +17,22 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def append_cart_to_line_items(cart):
     line_items = []
     for item in cart:
-        product = Product.objects.get(id=item['id'])
-        print(product.name)
-        line_items.append({
-            'price': settings.PRODUCT_PRICE,
-            'quantity': item['quantity'],
-        })
-    return line_items
+        try:
+            product = Product.objects.get(id=item['id'])
 
-# def append_cart_to_line_items(cart):
-#     for item in cart:
-#         product = Product.objects.get(id=item['id'])
-#         print(product.name)
-#         line_items.append({
-#             # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-#             'price': settings.PRODUCT_PRICE,
-#             'quantity': 1,
-#         })
-#     return line_items
+            price = Price.objects.get(product=product, size=item['size'])
+
+            line_items.append({
+                'price': price.stripe_price_id,  # use the Stripe price ID from your database
+                'quantity': item['quantity'],
+            })
+        except Product.DoesNotExist:
+            print(f"Product with id {item['id']} does not exist.")
+        except Price.DoesNotExist:
+            print(f"Price for product {item['id']} and size {
+                  item['size']} does not exist.")
+
+    return line_items
 
 
 @api_view(['POST'])
@@ -48,7 +46,7 @@ def create_checkout_session(request):
         print(cart)
         checkout_session = stripe.checkout.Session.create(
             line_items=append_cart_to_line_items(cart),
-            payment_method_types=['card'],
+            payment_method_types=['card', 'klarna'],
             mode='payment',
             success_url=YOUR_DOMAIN + '/success',
             cancel_url=YOUR_DOMAIN + '/cancel',
