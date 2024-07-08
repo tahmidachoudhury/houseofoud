@@ -17,21 +17,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install all dependencies
-        run: npm install
-        working-directory: ./frontend
-
-      - name: Build
-        run: npm run build # The build command of your project
-        working-directory: ./frontend
-
-      - name: Push to build branch
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: build # The branch name where you want to push the assets
-          FOLDER: frontend/dist # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          directory: ./frontend/dist
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m venv env
+          source env/bin/activate
+          pip install -r requirements.txt
+
+      - name: Run migrations
+        run: |
+          source env/bin/activate
+          python manage.py migrate
+
+      - name: Run tests
+        run: |
+          source env/bin/activate
+          python manage.py test
+
+      - name: Use Stripe API Key
+        run: |
+          source env/bin/activate
+          python manage.py your_command_that_uses_stripe
+        env:
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
