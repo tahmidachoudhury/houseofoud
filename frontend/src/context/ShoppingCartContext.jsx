@@ -53,7 +53,7 @@ export function ShoppingCartProvider({ children }) {
       }
     })
   }
-  function decreaseCartQuantity(id, price) {
+  function decreaseCartQuantity(id, size, price) {
     setCartItems((currItems) => {
       if (
         currItems.find((item) => item.id === id && item.price === price)
