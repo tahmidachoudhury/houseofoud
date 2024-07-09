@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes
 
 # Create your views here.
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_key = settings.STRIPE_API_KEY
 
 
 def append_cart_to_line_items(cart):
