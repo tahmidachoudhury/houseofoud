@@ -20,24 +20,13 @@ stripe.api_key = settings.STRIPE_TEST_KEY
 def append_cart_to_line_items(cart):
     line_items = []
     for item in cart:
-        #       try:
-        #             product = Product.objects.get(id=item['id'])
-
-        #             price = Price.objects.get(product=product, size=item['size'])
-
         line_items.append({
             'price': settings.TEST_ID,
             'quantity': item['quantity'],
         })
-#         except Product.DoesNotExist:
-#             print(f"Product with id {item['id']} does not exist.")
-#         except Price.DoesNotExist:
-#             print(f"Price for product {item['id']} and size {
-#                   item['size']} does not exist.")
-
     return line_items
 
-# ---------------------------------------------------------------------------
+# production---------------------------------------------------------------------------
 
 # stripe.api_key = settings.STRIPE_API_KEY
 
@@ -105,7 +94,6 @@ def create_checkout_session(request):
             },
             billing_address_collection='required',
         )
-        print(append_cart_to_line_items(cart))
         return JsonResponse({'url': checkout_session.url})
 
     except Exception as e:
@@ -134,7 +122,6 @@ def stripe_webhook(request):
         or event['type'] == 'checkout.session.async_payment_succeeded'
     ):
         session = event['data']['object']
-        print(session)
         customer_email = session['customer_details']['email']
         address_details = session["customer_details"]["address"]
         metadata = session['metadata']['checkout_receipt']
@@ -151,7 +138,7 @@ def stripe_webhook(request):
         send_mail(
             subject=f"Order number {current_datetime}",
             message=f"Customer order\n{cart_success_data(cart)}\n\nCustomer address \nCity: {address_details['city']}\nCountry: {address_details['country']}\nAddress Line 1: {
-                address_details['line1']}\nAddress Line 2: {address_details['line2']}\nPost Code: {address_details['postal_code']}",
+                address_details['line1']}\nAddress Line 2: {address_details['line2']}\nPost Code: {address_details['postal_code']}\nCustomer Email: {customer_email}",
             recipient_list=["ikram30002@gmail.com"],
             from_email="test@test.com"
         )
