@@ -28,12 +28,20 @@ env.read_env(env.str(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
+TEST_ID = 'price_1PRFH600JqWikrEqZZAiRgtZ'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 STRIPE_API_KEY = env('STRIPE_API_KEY')
+
+STRIPE_TEST_KEY = env('STRIPE_TEST_KEY')
+
+STRIPE_WEBHOOK = env('WEBHOOK_SIGNING_SECRET')
 
 
 # Application definition
