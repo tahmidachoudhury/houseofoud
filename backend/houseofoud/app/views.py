@@ -46,10 +46,14 @@ def create_checkout_session(request):
         print(cart)
         checkout_session = stripe.checkout.Session.create(
             line_items=append_cart_to_line_items(cart),
-            payment_method_types=['card', 'klarna'],
+            payment_method_types=['card'],
             mode='payment',
             success_url=YOUR_DOMAIN + '/success',
             cancel_url=YOUR_DOMAIN + '/cancel',
+            shipping_address_collection={
+                'allowed_countries': ['GB'],
+            },
+            billing_address_collection='required',
         )
         print("Stripe URL", checkout_session.url)
         return JsonResponse({'url': checkout_session.url})
