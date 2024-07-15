@@ -22,7 +22,13 @@ function Product(props) {
   }
 
   return (
-    <Box width="100%" height="100%" display="flex" flexDirection="column">
+    <Box
+      width="100%"
+      height="100%"
+      display="flex"
+      flexDirection="column"
+      sx={{ pr: 2, pb: 5 }}
+    >
       <div className="image-container" style={{ ...cntrStyle }} />
 
       <div style={productInfo}>

@@ -30,19 +30,28 @@ function ReviewSection() {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: {
+        max: 3000,
+        min: 1024,
+      },
       items: 3,
-      slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
+      partialVisibilityGutter: 40,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: {
+        max: 464,
+        min: 0,
+      },
       items: 1,
-      slidesToSlide: 1, // optional, default to 1.
+      partialVisibilityGutter: 30,
+    },
+    tablet: {
+      breakpoint: {
+        max: 1024,
+        min: 464,
+      },
+      items: 2,
+      partialVisibilityGutter: 30,
     },
   }
 
@@ -58,14 +67,27 @@ function ReviewSection() {
       <h2 style={{ textAlign: "center" }}>A Collection of Reviews</h2>
       <Carousel
         responsive={responsive}
-        swipeable={true}
-        containerClass="carousel-container"
-        itemClass="carousel-item-padding-40-px"
-        arrows={false}
-        showDots={true}
-        autoPlay={true}
         infinite={true}
-        autoPlaySpeed={3000}
+        autoPlay={true}
+        autoPlaySpeed={0} // Set to 0 for continuous movement
+        customTransition="transform 3000ms linear" // Smooth, continuous transition
+        transitionDuration={3000}
+        pauseOnHover={false} // Ensure it doesn't pause on hover
+        slidesToSlide={1} // Number of slides to move per transition
+        centerMode={false}
+        shouldResetAutoplay={false}
+        rewind={false}
+        rewindWithAnimation={false}
+        rtl={false}
+        showDots={false}
+        swipeable={false}
+        draggable={false}
+        arrows={false}
+        keyBoardControl={false}
+        additionalTransfrom={0}
+        renderArrowsWhenDisabled={false}
+        renderButtonGroupOutside={false}
+        renderDotsOutside={false}
       >
         {data.map((review, index) => {
           return (

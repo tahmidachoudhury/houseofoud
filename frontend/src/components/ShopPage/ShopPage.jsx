@@ -42,7 +42,7 @@ function ShopPage() {
         gap="32px"
         gridTemplateColumns={{
           xs: "repeat(2, minmax(0, 1fr))", // 3 columns on small screens
-          md: "repeat(4, minmax(0, 1fr))", // 4 columns on medium screens
+          lg: "repeat(4, minmax(0, 1fr))", // 4 columns on medium screens
         }}
       >
         {data.map((product, index) => {
