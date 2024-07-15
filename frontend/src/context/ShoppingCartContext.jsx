@@ -59,7 +59,9 @@ export function ShoppingCartProvider({ children }) {
         currItems.find((item) => item.id === id && item.price === price)
           ?.quantity === 1
       ) {
-        return currItems.filter((item) => item.id !== id)
+        return currItems.filter(
+          (item) => !(item.id == id && item.price == price)
+        )
       } else {
         return currItems.map((item) => {
           if (item.id === id && item.price === price) {

@@ -1,7 +1,6 @@
 import React from "react"
 import Grid from "@mui/system/Unstable_Grid"
 import Box from "@mui/system/Box"
-import "./Product.css"
 import Typography from "@mui/material/Typography"
 
 function Product(props) {
