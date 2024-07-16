@@ -1,7 +1,8 @@
 import React from "react"
 import ReviewCard from "./ReviewCard"
-import Carousel from "react-multi-carousel"
-import "react-multi-carousel/lib/styles.css"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import { useState, useEffect } from "react"
 
 function ReviewSection() {
@@ -62,33 +63,38 @@ function ReviewSection() {
     margin: "0",
   }
 
+  const settings = {
+    infinite: true,
+    speed: 6000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    arrows: false,
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
+
   return (
     <div style={main}>
       <h2 style={{ textAlign: "center" }}>A Collection of Reviews</h2>
-      <Carousel
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={0} // Set to 0 for continuous movement
-        customTransition="transform 3000ms linear" // Smooth, continuous transition
-        transitionDuration={3000}
-        pauseOnHover={false} // Ensure it doesn't pause on hover
-        slidesToSlide={1} // Number of slides to move per transition
-        centerMode={false}
-        shouldResetAutoplay={false}
-        rewind={false}
-        rewindWithAnimation={false}
-        rtl={false}
-        showDots={false}
-        swipeable={false}
-        draggable={false}
-        arrows={false}
-        keyBoardControl={false}
-        additionalTransfrom={0}
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
-      >
+      <Slider {...settings}>
         {data.map((review, index) => {
           return (
             <ReviewCard
@@ -100,8 +106,7 @@ function ReviewSection() {
             />
           )
         })}
-      </Carousel>
-      ;
+      </Slider>
     </div>
   )
 }
