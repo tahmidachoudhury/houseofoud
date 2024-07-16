@@ -2,6 +2,8 @@ import React from "react"
 import Grid from "@mui/system/Unstable_Grid"
 import Box from "@mui/system/Box"
 import Typography from "@mui/material/Typography"
+import { themeOptions } from "../../../themes/Theme"
+import { ThemeProvider } from "@mui/material"
 
 function Product(props) {
   const cntrStyle = {
@@ -16,9 +18,6 @@ function Product(props) {
 
   const productInfo = {
     padding: "15px 0 ",
-    borderTop: "1px solid black",
-    borderBottom: "1px solid black",
-    marginTop: "12px",
   }
 
   return (
@@ -32,16 +31,20 @@ function Product(props) {
       <div className="image-container" style={{ ...cntrStyle }} />
 
       <div style={productInfo}>
-        <Typography gutterBottom>{props.type}</Typography>
-        <Typography gutterBottom>{props.name}</Typography>
-        <Grid container>
-          <Grid item xs={6}>
-            <Typography gutterBottom>{props.price}</Typography>
+        <ThemeProvider theme={themeOptions}>
+          <Typography gutterBottom>{props.type}</Typography>
+          <Typography variant="body2" gutterBottom>
+            {props.name}
+          </Typography>
+          <Grid container>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{props.price}</Typography>
+            </Grid>
+            <Grid item xs={6} display="flex" justifyContent="right">
+              <Typography gutterBottom>{props.size}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={6} display="flex" justifyContent="right">
-            <Typography gutterBottom>{props.size}</Typography>
-          </Grid>
-        </Grid>
+        </ThemeProvider>
       </div>
     </Box>
   )
