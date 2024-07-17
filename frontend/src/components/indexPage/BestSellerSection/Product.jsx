@@ -9,6 +9,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
 import { styled } from "@mui/material/styles"
 import { Link } from "react-router-dom"
+import { useLikedItems } from "../../../context/LikedItemsContext"
 
 const StyledRating = styled(Rating)({
   zIndex: 2,
@@ -24,6 +25,7 @@ const StyledRating = styled(Rating)({
 })
 
 function Product(props) {
+  const { addLikedItem, unlikeItem } = useLikedItems()
   const cntrStyle = {
     width: "100%",
     height: "100%",
@@ -46,6 +48,7 @@ function Product(props) {
         icon={<FavoriteIcon fontSize="inherit" />}
         max={1}
         emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+        onClick={() => addLikedItem(props.link)}
       />
       <Link to={`/product/${props.link}`} key={props.link}>
         <Box

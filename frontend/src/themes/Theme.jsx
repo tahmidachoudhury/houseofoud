@@ -22,6 +22,10 @@ const theme = createTheme({
     },
   },
   typography: {
+    h4: {
+      fontFamily: "Montserrat",
+      textTransform: "uppercase",
+    },
     body1: {
       fontFamily: "Abel",
       fontWeight: 500,

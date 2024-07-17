@@ -8,6 +8,29 @@ import { Link } from "react-router-dom"
 import { useLikedItems } from "../../context/LikedItemsContext"
 
 export default function WishlistPage() {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      const apiUrl = import.meta.env.VITE_PRODUCTS_API_URL
+      try {
+        const response = await fetch(apiUrl)
+
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`)
+        }
+
+        const result = await response.json()
+        setData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+        setError(error.message)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  console.log(data)
   const { likedItems } = useLikedItems()
   return (
     <Box sx={{ padding: "22px 30px" }}>
@@ -31,11 +54,11 @@ export default function WishlistPage() {
               <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={product.id}>
                 <Product
                   key={product.id}
-                  url={product.id}
-                  type={product.id}
-                  name={product.id}
-                  price={formatCurrency(product.id)}
-                  size={product.id}
+                  url={product.url}
+                  type={product.type}
+                  name={product.name}
+                  price={formatCurrency(product.price)}
+                  size={product.size}
                 />
               </Box>
             </Link>

@@ -109,7 +109,7 @@ export function ShoppingCart(props) {
               )}
             </div>
           </Box>
-          {console.log({ cartItems: cartWithIntIds })}
+          {/* {console.log({ cartItems: cartWithIntIds })} */}
           <form onSubmit={sendCartData}>
             <CSRFToken />
             <Button

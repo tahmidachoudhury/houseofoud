@@ -61,7 +61,6 @@ function ProductPage() {
 
     fetchData()
   }, [])
-
   const product = data.find((item) => item.id === numericId)
 
   if (!product) {
