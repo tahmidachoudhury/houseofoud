@@ -16,21 +16,17 @@ import Typography from "@mui/material/Typography"
 import Slide from "@mui/material/Slide"
 import Button from "@mui/material/Button"
 import ShoppingBagTwoToneIcon from "@mui/icons-material/ShoppingBagTwoTone"
-import SearchIcon from "@mui/icons-material/Search"
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import { Link } from "react-router-dom"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
+import { ThemeProvider } from "@mui/material/"
+import { themeOptions } from "../../themes/Theme"
 
 const drawerWidth = 240
 const navItems = ["Shop", "Account", "Liked", "Cart"]
-const rightItems = ["Account", "Liked", "Cart"]
 
 function HideOnScroll(props) {
   const { children, window } = props
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   })
@@ -106,61 +102,41 @@ export default function DrawerAppBar(props) {
             >
               <MenuIcon />
             </IconButton>
+            <ThemeProvider theme={themeOptions}>
+              <Box sx={{ display: { xs: "none", sm: "block" }, flex: 1 }}>
+                <Button>
+                  <Link to="/shop">Shop</Link>
+                </Button>
+              </Box>
 
-            <Box sx={{ display: { xs: "none", sm: "block" }, flex: 1 }}>
-              <Button
-                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
-              >
-                <Link to="/shop">Shop</Link>
+              <Button sx={{ width: "fit-content" }}>
+                <Link to="/home">
+                  <Typography variant="h6" component="div">
+                    House of oud
+                  </Typography>
+                </Link>
               </Button>
-            </Box>
 
-            {/* <IconButton
-              color="black"
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <SearchIcon />
-            </IconButton> */}
-
-            <Button
-              sx={{
-                textAlign: "center",
-                color: "#fff",
-                width: "fit-content",
-              }}
-            >
-              <Link to="/home">
-                <Typography variant="h6" component="div">
-                  House of oud
-                </Typography>
-              </Link>
-            </Button>
-
-            <Box
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                flex: 1,
-                textAlign: "right",
-                justifyContent: "right",
-              }}
-            >
-              <Button
+              <Box
                 sx={{
-                  color: "#fff",
-                  fontSize: { sm: "10px", md: "13px" },
+                  display: { xs: "none", sm: "flex" },
+                  flex: 1,
+                  textAlign: "right",
+                  justifyContent: "right",
                 }}
               >
-                <Link to={`/liked`}>liked</Link>
-              </Button>
+                <Button>
+                  <Link to={`/liked`}>liked</Link>
+                </Button>
 
-              <Button
-                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
-                onClick={openCart}
-              >
-                <Link>cart({cartQuantity})</Link>
-              </Button>
-            </Box>
+                <Button
+                  sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
+                  onClick={openCart}
+                >
+                  <Link>cart({cartQuantity})</Link>
+                </Button>
+              </Box>
+            </ThemeProvider>
             <Box
               display={{ xs: "flex", sm: "none" }}
               justifyContent="right"

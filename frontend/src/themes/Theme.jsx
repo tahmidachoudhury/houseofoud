@@ -33,6 +33,17 @@ const theme = createTheme({
       fontSize: "1rem",
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "white",
+          },
+        },
+      },
+    },
+  },
 })
 
 export const themeOptions = responsiveFontSizes(theme)

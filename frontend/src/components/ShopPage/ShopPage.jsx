@@ -47,18 +47,17 @@ function ShopPage() {
       >
         {data.map((product, index) => {
           return (
-            <Link to={`/product/${product.id}`} key={product.id}>
-              <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={index}>
-                <Product
-                  key={product.id}
-                  url={product.url}
-                  type={product.type}
-                  name={product.name}
-                  price={formatCurrency(product.price)}
-                  size={product.size}
-                />
-              </Box>
-            </Link>
+            <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={index}>
+              <Product
+                key={product.id}
+                link={product.id}
+                url={product.url}
+                type={product.type}
+                name={product.name}
+                price={formatCurrency(product.price)}
+                size={product.size}
+              />
+            </Box>
           )
         })}
       </Box>
