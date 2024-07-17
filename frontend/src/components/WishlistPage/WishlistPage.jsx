@@ -5,10 +5,10 @@ import allItems from "../../data/allItems.json"
 import Box from "@mui/system/Box"
 import { formatCurrency } from "../../utilities/formatCurrency"
 import { Link } from "react-router-dom"
+import { useLikedItems } from "../../context/LikedItemsContext"
 
-function ShopPage() {
+export default function WishlistPage() {
   const [data, setData] = useState([])
-
   useEffect(() => {
     async function fetchData() {
       const apiUrl = import.meta.env.VITE_PRODUCTS_API_URL
@@ -29,11 +29,14 @@ function ShopPage() {
 
     fetchData()
   }, [])
+
+  console.log(data)
+  const { likedItems } = useLikedItems()
   return (
     <Box sx={{ padding: "22px 30px" }}>
       <Box textAlign="center" paddingTop={{ sm: "3rem" }} paddingBottom="1rem">
         <Typography variant="h4" gutterBottom>
-          All Fragrances
+          Wishlist
         </Typography>
       </Box>
 
@@ -45,24 +48,23 @@ function ShopPage() {
           lg: "repeat(4, minmax(0, 1fr))", // 4 columns on medium screens
         }}
       >
-        {data.map((product, index) => {
+        {likedItems.map((product) => {
           return (
-            <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={index}>
-              <Product
-                key={product.id}
-                link={product.id}
-                url={product.url}
-                type={product.type}
-                name={product.name}
-                price={formatCurrency(product.price)}
-                size={product.size}
-              />
-            </Box>
+            <Link to={`/product/${product.id}`} key={product.id}>
+              <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={product.id}>
+                <Product
+                  key={product.id}
+                  url={product.url}
+                  type={product.type}
+                  name={product.name}
+                  price={formatCurrency(product.price)}
+                  size={product.size}
+                />
+              </Box>
+            </Link>
           )
         })}
       </Box>
     </Box>
   )
 }
-
-export default ShopPage

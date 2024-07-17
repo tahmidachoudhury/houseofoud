@@ -16,21 +16,17 @@ import Typography from "@mui/material/Typography"
 import Slide from "@mui/material/Slide"
 import Button from "@mui/material/Button"
 import ShoppingBagTwoToneIcon from "@mui/icons-material/ShoppingBagTwoTone"
-import SearchIcon from "@mui/icons-material/Search"
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import { Link } from "react-router-dom"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
+import { ThemeProvider } from "@mui/material/"
+import { themeOptions } from "../../themes/Theme"
 
 const drawerWidth = 240
 const navItems = ["Shop", "Account", "Liked", "Cart"]
-const rightItems = ["Account", "Liked", "Cart"]
 
 function HideOnScroll(props) {
   const { children, window } = props
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   })
@@ -81,94 +77,86 @@ export default function DrawerAppBar(props) {
         <AppBar
           component="nav"
           sx={{
-            bgcolor: "transparent",
+            bgcolor: { xs: "transparent" },
             boxShadow: "none",
+            position: { xs: "relative", sm: "fixed" },
           }}
         >
-          <Toolbar sx={{ display: "flex" }}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
             <IconButton
               color="black"
               aria-label="open drawer"
               edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ m: 0, display: { sm: "none" } }}
+              onClick={() => handleDrawerToggle()}
+              sx={{
+                m: 0,
+                display: { sm: "none" },
+                flex: 1,
+                justifyContent: "left",
+              }}
             >
               <MenuIcon />
             </IconButton>
+            <ThemeProvider theme={themeOptions}>
+              <Box sx={{ display: { xs: "none", sm: "block" }, flex: 1 }}>
+                <Button>
+                  <Link to="/shop">Shop</Link>
+                </Button>
+              </Box>
 
-            <Box sx={{ display: { xs: "none", sm: "block" }, flex: 1 }}>
-              <Button
-                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
-              >
-                <Link to="/shop">Shop</Link>
+              <Button sx={{ width: "fit-content" }}>
+                <Link to="/home">
+                  <Typography variant="h6" component="div">
+                    House of oud
+                  </Typography>
+                </Link>
               </Button>
-            </Box>
 
-            {/* <IconButton
-              color="black"
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <SearchIcon />
-            </IconButton> */}
-
-            <Button
-              sx={{
-                display: { xs: "block" },
-                flex: 1,
-                textAlign: "center",
-                color: "#fff",
-              }}
-            >
-              <Link to="/home">
-                <Typography variant="h6" component="div">
-                  House Of Oud
-                </Typography>
-              </Link>
-            </Button>
-
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                flex: 1,
-                textAlign: "right",
-              }}
-            >
-              <Button
+              <Box
                 sx={{
-                  color: "#fff",
-                  fontSize: { sm: "10px", md: "13px" },
+                  display: { xs: "none", sm: "flex" },
+                  flex: 1,
+                  textAlign: "right",
+                  justifyContent: "right",
                 }}
               >
-                <Link to={`/liked`}>liked</Link>
-              </Button>
+                <Button>
+                  <Link to={`/liked`}>liked</Link>
+                </Button>
 
-              <Button
-                sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
-                onClick={openCart}
+                <Button
+                  sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
+                  onClick={openCart}
+                >
+                  <Link>cart({cartQuantity})</Link>
+                </Button>
+              </Box>
+            </ThemeProvider>
+            <Box
+              display={{ xs: "flex", sm: "none" }}
+              justifyContent="right"
+              flex={1.26}
+            >
+              <IconButton color="black" edge="start" sx={{ m: 0, p: 0.75 }}>
+                <FavoriteBorderIcon />
+              </IconButton>
+
+              <IconButton
+                color="black"
+                onClick={() => {
+                  openCart()
+                }}
+                edge="start"
+                sx={{ m: 0, p: 0.75 }}
               >
-                <Link>cart({cartQuantity})</Link>
-              </Button>
+                <ShoppingBagTwoToneIcon />
+              </IconButton>
             </Box>
-
-            <IconButton
-              color="black"
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <FavoriteBorderIcon />
-            </IconButton>
-
-            <IconButton
-              color="black"
-              onClick={() => {
-                openCart()
-              }}
-              edge="start"
-              sx={{ m: 0, p: 0.75, display: { sm: "none" } }}
-            >
-              <ShoppingBagTwoToneIcon />
-            </IconButton>
           </Toolbar>
         </AppBar>
       </HideOnScroll>

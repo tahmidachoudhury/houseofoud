@@ -1,40 +1,55 @@
-import Carousel from "react-multi-carousel";
-import React from "react";
-import "react-multi-carousel/lib/styles.css";
-import Product from "./Product.jsx";
-import Box from "@mui/system/Box";
-import BestSellingProducts from "../../../data/bestSellingData.js";
+import Carousel from "react-multi-carousel"
+import React from "react"
+import "react-multi-carousel/lib/styles.css"
+import Product from "./Product.jsx"
+import Box from "@mui/system/Box"
+import BestSellingProducts from "../../../data/bestSellingData.js"
 
 function BestSellingProductsSection() {
   const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 4,
-    },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      breakpoint: {
+        max: 3000,
+        min: 1024,
+      },
+      items: 3,
+      partialVisibilityGutter: 40,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: {
+        max: 464,
+        min: 0,
+      },
       items: 1,
+      partialVisibilityGutter: 30,
     },
-  };
+    tablet: {
+      breakpoint: {
+        max: 1024,
+        min: 464,
+      },
+      items: 2,
+      partialVisibilityGutter: 30,
+    },
+  }
 
   const h2Style = {
     textAlign: "center",
-  };
+  }
 
   return (
     <div>
       <h2 style={h2Style}>Best Sellers</h2>
       <Box px={1}>
-        <Carousel responsive={responsive} arrows={false}>
+        <Carousel
+          responsive={responsive}
+          arrows={false}
+          centerMode={false}
+          draggable
+          infinite
+          showDots={true}
+          dotListClass=""
+        >
           {BestSellingProducts.map((product, index) => {
             return (
               <Product
@@ -45,12 +60,12 @@ function BestSellingProductsSection() {
                 price={product.price}
                 size={product.size}
               />
-            );
+            )
           })}
         </Carousel>
       </Box>
     </div>
-  );
+  )
 }
 
-export default BestSellingProductsSection;
+export default BestSellingProductsSection

@@ -37,6 +37,7 @@ function ProductPage() {
   const { openCart } = useShoppingCart()
   const [data, setData] = useState([])
   const { id } = useParams()
+  const numericId = Number(id)
   const [price, setPrice] = useState(6)
   const [selectedSize, setSelectedSize] = useState("3ml")
 
@@ -60,8 +61,7 @@ function ProductPage() {
 
     fetchData()
   }, [])
-
-  const product = data.find((item) => item.id.toString() === id)
+  const product = data.find((item) => item.id === numericId)
 
   if (!product) {
     return (
@@ -88,15 +88,11 @@ function ProductPage() {
     increaseCartQuantity,
     confirmCartItem,
   } = useShoppingCart()
-  const tempQuantity = getStagedItemQuantity(id)
-  const cartQuantity = getItemQuantity(id)
+  const tempQuantity = getStagedItemQuantity(numericId)
+  const cartQuantity = getItemQuantity(numericId)
 
   return (
-    <Box
-      display="flex"
-      flexDirection={{ xs: "column", md: "row" }}
-      mt={{ xs: "58px", md: "0" }}
-    >
+    <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
       <Box
         component="img"
         src={`../../../../public/${product.url}`}
@@ -139,7 +135,7 @@ function ProductPage() {
           <ColorButton
             size="small"
             onClick={() => {
-              addTempItem(id, selectedSize, price)
+              addTempItem(numericId, selectedSize, price)
             }}
           >
             <AddIcon style={{ color: "black", fontSize: "0.8rem" }} />
@@ -149,15 +145,22 @@ function ProductPage() {
           </span>
           <ColorButton
             onClick={() => {
-              decreaseTempItem(id, selectedSize, price)
-              decreaseCartQuantity(id)
+              decreaseTempItem(numericId, selectedSize, price)
+              decreaseCartQuantity(numericId, price)
             }}
           >
             <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
           </ColorButton>
         </Box>
         <Box border={1} textAlign="center" borderRadius={1.8}>
-          <AddToCart onClick={() => confirmCartItem(id)}>Add to cart</AddToCart>
+          <AddToCart
+            onClick={() => {
+              confirmCartItem(numericId, selectedSize, price)
+              openCart()
+            }}
+          >
+            Add to cart
+          </AddToCart>
         </Box>
       </Box>
     </Box>

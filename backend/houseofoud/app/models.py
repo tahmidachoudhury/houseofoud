@@ -29,8 +29,17 @@ class Product(models.Model):
     type = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
     url = models.CharField(max_length=100)
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=2000)
     size = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
+
+class Price(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='prices')
+    size = models.CharField(max_length=255)
+    stripe_price_id = models.CharField(max_length=255)
+    unit_amount = models.IntegerField()
+    currency = models.CharField(max_length=10, default='gbp')

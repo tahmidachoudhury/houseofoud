@@ -12,6 +12,7 @@ const ColorButton = styled(Button)({
   borderRadius: 0,
   backgroundColor: "white",
   boxShadow: "none",
+  p: 0,
   "&:hover": {
     boxShadow: "none",
     backgroundColor: "white",
@@ -60,30 +61,37 @@ export function CartItem(props) {
         <div className="text-muted">
           <Box sx={{ border: 1, display: "inline-block" }}>
             <ColorButton
-              size="small"
-              onClick={() => increaseCartQuantity(props.id)}
+              onClick={() =>
+                increaseCartQuantity(props.id, props.size, props.price)
+              }
             >
-              <AddIcon style={{ color: "black" }} />
+              <AddIcon
+                style={{ color: "black", fontSize: "0.8rem", padding: 0 }}
+              />
             </ColorButton>
             <span>{props.quantity}</span>
             <ColorButton
-              size="small"
-              onClick={() => decreaseCartQuantity(props.id)}
+              onClick={() =>
+                decreaseCartQuantity(props.id, props.size, props.price)
+              }
             >
-              <RemoveIcon style={{ color: "black" }} />
+              <RemoveIcon style={{ color: "black", fontSize: "0.8rem" }} />
             </ColorButton>
           </Box>
-          <Button
-            variant="outline-danger"
-            size="sm"
-            onClick={() => removeFromCart(item.id)}
-          >
-            Remove
-          </Button>
         </div>
       </Box>
-      <Box flex={1} textAlign="center">
-        {formatCurrency(props.price * props.quantity)}
+      <Box display="flex" flexDirection="column" justifyContent="space-evenly">
+        <Box textAlign="center">
+          {formatCurrency(props.price * props.quantity)}
+        </Box>
+
+        <Button
+          variant="outline-danger"
+          size="sm"
+          onClick={() => removeFromCart(item.id, props.size, props.price)}
+        >
+          Remove
+        </Button>
       </Box>
     </Stack>
   )

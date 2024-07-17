@@ -1,7 +1,8 @@
 import React from "react"
 import ReviewCard from "./ReviewCard"
-import Carousel from "react-multi-carousel"
-import "react-multi-carousel/lib/styles.css"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import { useState, useEffect } from "react"
 
 function ReviewSection() {
@@ -30,19 +31,28 @@ function ReviewSection() {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: {
+        max: 3000,
+        min: 1024,
+      },
       items: 3,
-      slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
+      partialVisibilityGutter: 40,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: {
+        max: 464,
+        min: 0,
+      },
       items: 1,
-      slidesToSlide: 1, // optional, default to 1.
+      partialVisibilityGutter: 30,
+    },
+    tablet: {
+      breakpoint: {
+        max: 1024,
+        min: 464,
+      },
+      items: 2,
+      partialVisibilityGutter: 30,
     },
   }
 
@@ -53,20 +63,38 @@ function ReviewSection() {
     margin: "0",
   }
 
+  const settings = {
+    infinite: true,
+    speed: 6000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    arrows: false,
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
+
   return (
     <div style={main}>
       <h2 style={{ textAlign: "center" }}>A Collection of Reviews</h2>
-      <Carousel
-        responsive={responsive}
-        swipeable={true}
-        containerClass="carousel-container"
-        itemClass="carousel-item-padding-40-px"
-        arrows={false}
-        showDots={true}
-        autoPlay={true}
-        infinite={true}
-        autoPlaySpeed={3000}
-      >
+      <Slider {...settings}>
         {data.map((review, index) => {
           return (
             <ReviewCard
@@ -78,8 +106,7 @@ function ReviewSection() {
             />
           )
         })}
-      </Carousel>
-      ;
+      </Slider>
     </div>
   )
 }

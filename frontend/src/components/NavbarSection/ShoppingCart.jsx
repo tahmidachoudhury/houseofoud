@@ -68,10 +68,15 @@ export function ShoppingCart(props) {
   }))
 
   const DrawerList = (
-    <Box sx={{ width: "100%" }} role="presentation">
+    <Box
+      display="flex"
+      flexDirection="column"
+      sx={{ width: "100%", px: "1rem", height: "100%" }}
+      role="presentation"
+    >
       <List>
         <Box display="flex" justifyContent="space-between">
-          <h2>Cart</h2>
+          <h2>YOUR BAG</h2>
           <CloseIcon
             onClick={closeCart}
             sx={{
@@ -91,24 +96,46 @@ export function ShoppingCart(props) {
           ))}
         </Stack>
       </List>
-      <Box display="flex" justifyContent="space-between">
-        <div>Subtotal:</div>
-        <div>
-          Total{" "}
-          {formatCurrency(
-            cartItems.reduce((total, cartItem) => {
-              return total + (cartItem?.price || 0) * cartItem.quantity
-            }, 0)
-          )}
-        </div>
-      </Box>
-      {console.log({ cartItems: cartWithIntIds })}
-      <form onSubmit={sendCartData}>
-        <CSRFToken />
-        <Button variant="outline-danger" type="submit" size="sm">
-          Checkout
-        </Button>
-      </form>
+      {cartItems.length > 0 && (
+        <>
+          <Box display="flex" justifyContent="space-between">
+            <div>Subtotal:</div>
+            <div>
+              Total{" "}
+              {formatCurrency(
+                cartItems.reduce((total, cartItem) => {
+                  return total + (cartItem?.price || 0) * cartItem.quantity
+                }, 0)
+              )}
+            </div>
+          </Box>
+          {/* {console.log({ cartItems: cartWithIntIds })} */}
+          <form onSubmit={sendCartData}>
+            <CSRFToken />
+            <Button
+              variant="outline-danger"
+              type="submit"
+              size="sm"
+              sx={{
+                width: "100%",
+                padding: "8px",
+                backgroundColor: "#990000",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "#660000", // Darker maroon red on hover
+                },
+              }}
+            >
+              Checkout
+            </Button>
+          </form>
+        </>
+      )}
+      {cartItems.length == 0 && (
+        <Box justifySelf="center" alignSelf="center">
+          Your Cart is Empty.
+        </Box>
+      )}
     </Box>
   )
 

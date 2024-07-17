@@ -11,28 +11,40 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+env.read_env(env.str(BASE_DIR, '.env'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g0pnn_*4^vwcmmp)+tvz0$u6zkz%c%9%9w!3pj+lk_1htil&+w'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+
+TEST_ID = 'price_1PRFH600JqWikrEqZZAiRgtZ'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STRIPE_SECRET_KEY = 'sk_test_51POxdB00JqWikrEqzU7AG6ZjDen08OaA2vDcMPXFvPjLFuO1YYkhejuntXxUQV9987yBCt9n6YuCl6tqiLY59UYV00elGWx1ZR'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-PRODUCT_PRICE = 'price_1PT4ev00JqWikrEqWiluna19'
+STRIPE_API_KEY = env('STRIPE_API_KEY')
+
+STRIPE_TEST_KEY = env('STRIPE_TEST_KEY')
+
+STRIPE_WEBHOOK = env('WEBHOOK_SIGNING_SECRET')
+
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -96,11 +108,11 @@ WSGI_APPLICATION = 'houseofoud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'houseofoud',
-        'USER': 'postgres',
-        'PASSWORD': '2468',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 

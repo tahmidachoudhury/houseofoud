@@ -70,26 +70,18 @@ export default function Footer() {
           }}
         >
           <Typography variant="body2" fontWeight={600}>
-            Product
+            Services
           </Typography>
           <Link underline="none" color="text.secondary" href="#">
-            Features
+            Payments
           </Link>
           <Link underline="none" color="text.secondary" href="#">
-            Testimonials
+            Returns
           </Link>
           <Link underline="none" color="text.secondary" href="#">
-            Highlights
+            Delivery
           </Link>
           <Link underline="none" color="text.secondary" href="#">
-            Pricing
-          </Link>
-          <Link
-            underline="none"
-            sx={{ display: "block" }}
-            color="text.secondary"
-            href="#"
-          >
             FAQs
           </Link>
         </Box>
@@ -110,9 +102,6 @@ export default function Footer() {
           <Link underline="none" color="text.secondary" href="#">
             Careers
           </Link>
-          <Link underline="none" color="text.secondary" href="#">
-            Press
-          </Link>
         </Box>
         <Box
           sx={{
@@ -123,17 +112,20 @@ export default function Footer() {
           }}
         >
           <Typography variant="body2" fontWeight={600}>
-            Legal
+            Contact Information
           </Typography>
-          <Link underline="none" color="text.secondary" href="#">
-            Terms
-          </Link>
-          <Link underline="none" color="text.secondary" href="#">
-            Privacy
-          </Link>
-          <Link underline="none" color="text.secondary" href="#">
-            Contact
-          </Link>
+          <Typography>Orders, Billing, Shipping, General Questions</Typography>
+          <Typography>
+            <a title="test@test.com" href="mailto:test@test.com">
+              test@test.com
+            </a>
+          </Typography>
+          <Typography>
+            Office:{" "}
+            <a title="+44 1234 567 891" href="tel:+44 1234 567 891">
+              +44 1234 567 891
+            </a>
+          </Typography>
         </Box>
       </Box>
       <Box
@@ -147,15 +139,6 @@ export default function Footer() {
         }}
       >
         <div>
-          <Link color="text.secondary" href="#">
-            Privacy Policy
-          </Link>
-          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
-            &nbsp;•&nbsp;
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Terms of Service
-          </Link>
           <Copyright />
         </div>
         <Stack
@@ -176,15 +159,7 @@ export default function Footer() {
           >
             <TikTokIcon />
           </IconButton>
-          <IconButton
-            color="inherit"
-            href="#"
-            target="_blank"
-            aria-label="X"
-            sx={{ alignSelf: "center" }}
-          >
-            <TwitterIcon />
-          </IconButton>
+
           <IconButton
             color="inherit"
             href="https://www.instagram.com/houseofoudlondon?igsh=MWZ6NDhmZTczdTE2Mg=="
