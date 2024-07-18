@@ -13,12 +13,13 @@ import SizeButtons from "./SizeButtons"
 const ColorButton = styled(Button)({
   color: "white",
   borderRadius: 0,
-  backgroundColor: "white",
+  backgroundColor: "inherit",
   boxShadow: "none",
   "&:hover": {
     boxShadow: "none",
-    backgroundColor: "white",
+    backgroundColor: "inherit",
   },
+  width: "3rem",
   padding: 0,
 })
 
@@ -85,7 +86,6 @@ function ProductPage() {
     addTempItem,
     decreaseTempItem,
     decreaseCartQuantity,
-    increaseCartQuantity,
     confirmCartItem,
   } = useShoppingCart()
   const tempQuantity = getStagedItemQuantity(numericId)
@@ -126,8 +126,8 @@ function ProductPage() {
           sx={{
             border: 1,
             display: "inline-block",
-            borderRadius: "2rem",
-            py: 1,
+            borderRadius: "1rem",
+            py: 0.4,
             my: 2,
             overflow: "hidden",
           }}
@@ -149,7 +149,12 @@ function ProductPage() {
               decreaseCartQuantity(numericId, price)
             }}
           >
-            <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
+            <RemoveIcon
+              style={{
+                color: "black",
+                fontSize: "0.7rem",
+              }}
+            />
           </ColorButton>
         </Box>
         <Box border={1} textAlign="center" borderRadius={1.8}>

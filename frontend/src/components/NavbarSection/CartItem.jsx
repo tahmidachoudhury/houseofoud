@@ -10,13 +10,14 @@ import RemoveIcon from "@mui/icons-material/Remove"
 const ColorButton = styled(Button)({
   color: "white",
   borderRadius: 0,
-  backgroundColor: "white",
+  backgroundColor: "inherit",
   boxShadow: "none",
   p: 0,
   "&:hover": {
     boxShadow: "none",
-    backgroundColor: "white",
+    backgroundColor: "inherit",
   },
+  width: "2.5rem",
 })
 
 export function CartItem(props) {

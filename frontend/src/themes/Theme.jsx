@@ -11,8 +11,8 @@ const theme = createTheme({
       main: "#474b4f",
     },
     background: {
-      paper: "rgba(240,241,240,0.16)",
-      default: "#cfd8dc",
+      paper: "rgba(240,241,240)",
+      default: "#e1e6e8",
     },
     text: {
       primary: "#3e362e",
@@ -44,6 +44,7 @@ const theme = createTheme({
           "&:hover": {
             backgroundColor: "white",
           },
+          minWidth: 0,
         },
       },
     },

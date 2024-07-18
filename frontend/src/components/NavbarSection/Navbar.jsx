@@ -129,10 +129,7 @@ export default function DrawerAppBar(props) {
                   <Link to={`/liked`}>liked</Link>
                 </Button>
 
-                <Button
-                  sx={{ color: "#fff", fontSize: { sm: "10px", md: "13px" } }}
-                  onClick={openCart}
-                >
+                <Button sx={{ color: "#fff" }} onClick={openCart}>
                   <Link>cart({cartQuantity})</Link>
                 </Button>
               </Box>
