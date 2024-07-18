@@ -1,8 +1,11 @@
 import { Button, Typography } from "@mui/material"
 import { Box, Stack } from "@mui/system"
 import React from "react"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
 
 const SuccessPage = () => {
+  const { setCartItems } = useShoppingCart()
+  setCartItems([])
   return (
     <Box
       display="flex"

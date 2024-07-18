@@ -8,7 +8,6 @@ import ProductPage from "./ProductPage/ProductPage.jsx"
 import SignInSide from "./SignupPage/Login.jsx"
 import SignUp from "./SignupPage/Sign-Up.jsx"
 import { ShoppingCartProvider } from "../context/ShoppingCartContext.jsx"
-import StripeRedirect from "./StripeCheckoutPage/StripeRedirect.jsx"
 import SuccessPage from "./StripeCheckoutPage/SuccessPage.jsx"
 import CancelPage from "./StripeCheckoutPage/CancelPage.jsx"
 import LandingPage from "./ComingSoonPage/ComingSoonLander.jsx"
@@ -27,7 +26,6 @@ function App() {
             <Route element={<WithNav />}>
               <Route path="/home" element={<Home />} />
               <Route path="/shop" element={<ShopPage />} />
-              <Route path="/checkout" element={<StripeRedirect />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/cancel" element={<CancelPage />} />
