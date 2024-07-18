@@ -9,6 +9,7 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view, permission_classes
 import json
 from datetime import datetime
+import time
 
 # Create your views here.
 
@@ -51,15 +52,12 @@ def append_cart_to_line_items(cart):
 
 #     return line_items
 
-
-def cart_success_data(cart):
+def parse_cart_data(cart):
     # [{'price': 'price_1PRFH600JqWikrEqZZAiRgtZ', 'quantity': 1}, {'price': 'price_1PRFH600JqWikrEqZZAiRgtZ', 'quantity': 1}]
     items = []
-    total = 0
     for item in cart:
         product_info = Price.objects.get(stripe_price_id=item['price'])
         product = Product.objects.get(id=product_info.product_id)
-        total += product_info.unit_amount*item['quantity'] / 100
         item_string = (
             f"Product name: {product.name}, "
             f"Size: {product_info.size}, "
@@ -67,7 +65,6 @@ def cart_success_data(cart):
             f"Quantity: {item['quantity']} "
         )
         items.append(item_string)
-    items.append(f"Total: £{total}")
     return "\n".join(items)
 
 
@@ -102,6 +99,9 @@ def create_checkout_session(request):
 
 @csrf_exempt
 def stripe_webhook(request):
+    # development
+    stripe.api_key = settings.STRIPE_TEST_KEY
+    time.sleep(10)
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
@@ -111,10 +111,8 @@ def stripe_webhook(request):
             payload, sig_header, settings.STRIPE_WEBHOOK
         )
     except ValueError as e:
-        # Invalid payload
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
         return HttpResponse(status=400)
 
     if (
@@ -122,22 +120,39 @@ def stripe_webhook(request):
         or event['type'] == 'checkout.session.async_payment_succeeded'
     ):
         session = event['data']['object']
+
+        print(session)
+        amount_total = session['amount_total']
+        order_id = session['created']
+        session_id = session.get('id', None)
         customer_email = session['customer_details']['email']
-        address_details = session["customer_details"]["address"]
+        address_details = session['customer_details']['address']
         metadata = session['metadata']['checkout_receipt']
         cart = json.loads(metadata)
         current_datetime = datetime.now()
 
+        total = f"£{amount_total / 100:.2f}"
+
+        time.sleep(5)
+        order = Orders(
+            customer_email=customer_email,
+            stripe_checkout_id=session_id,
+            cart_info=parse_cart_data(cart),
+            amount_total=total,
+            order_id=order_id
+        )
+        order.save()
+
         send_mail(
-            subject="Here is your product",
+            subject=f"Your Order ID is #{order.id}",
             message=f"Thanks for your purchase. Here are the products that you ordered \n{
-                cart_success_data(cart)}",
+                parse_cart_data(cart)}\nTotal: {total}",
             recipient_list=[customer_email],
             from_email="test@test.com"
         )
         send_mail(
-            subject=f"Order number {current_datetime}",
-            message=f"Customer order\n{cart_success_data(cart)}\n\nCustomer address \nCity: {address_details['city']}\nCountry: {address_details['country']}\nAddress Line 1: {
+            subject=f"Order number {order.id}",
+            message=f"Customer order\n{parse_cart_data(cart)}\n\nCustomer address \nCity: {address_details['city']}\nCountry: {address_details['country']}\nAddress Line 1: {
                 address_details['line1']}\nAddress Line 2: {address_details['line2']}\nPost Code: {address_details['postal_code']}\nCustomer Email: {customer_email}",
             recipient_list=["ikram30002@gmail.com"],
             from_email="test@test.com"

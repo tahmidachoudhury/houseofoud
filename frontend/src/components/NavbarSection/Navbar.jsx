@@ -3,27 +3,20 @@ import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import CssBaseline from "@mui/material/CssBaseline"
 import useScrollTrigger from "@mui/material/useScrollTrigger"
-import Divider from "@mui/material/Divider"
 import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemText from "@mui/material/ListItemText"
-import MenuIcon from "@mui/icons-material/Menu"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 import Slide from "@mui/material/Slide"
 import Button from "@mui/material/Button"
 import ShoppingBagTwoToneIcon from "@mui/icons-material/ShoppingBagTwoTone"
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone"
 import { Link } from "react-router-dom"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import { ThemeProvider } from "@mui/material/"
 import { themeOptions } from "../../themes/Theme"
 
 const drawerWidth = 240
-const navItems = ["Shop", "Account", "Liked", "Cart"]
 
 function HideOnScroll(props) {
   const { children, window } = props
@@ -46,26 +39,6 @@ export default function DrawerAppBar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
   }
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        House of Oud
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <Link to={`/${item}`}>
-                <ListItemText primary={item} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
 
   const container =
     window !== undefined ? () => window().document.body : undefined
@@ -90,9 +63,8 @@ export default function DrawerAppBar(props) {
           >
             <IconButton
               color="black"
-              aria-label="open drawer"
+              aria-label="to shop page"
               edge="start"
-              onClick={() => handleDrawerToggle()}
               sx={{
                 m: 0,
                 display: { sm: "none" },
@@ -100,7 +72,9 @@ export default function DrawerAppBar(props) {
                 justifyContent: "left",
               }}
             >
-              <MenuIcon />
+              <Link to="/shop">
+                <ShoppingBagTwoToneIcon />
+              </Link>
             </IconButton>
             <ThemeProvider theme={themeOptions}>
               <Box sx={{ display: { xs: "none", sm: "block" }, flex: 1 }}>
@@ -125,10 +99,6 @@ export default function DrawerAppBar(props) {
                   justifyContent: "right",
                 }}
               >
-                <Button>
-                  <Link to={`/liked`}>liked</Link>
-                </Button>
-
                 <Button sx={{ color: "#fff" }} onClick={openCart}>
                   <Link>cart({cartQuantity})</Link>
                 </Button>
@@ -139,10 +109,6 @@ export default function DrawerAppBar(props) {
               justifyContent="right"
               flex={1.26}
             >
-              <IconButton color="black" edge="start" sx={{ m: 0, p: 0.75 }}>
-                <FavoriteBorderIcon />
-              </IconButton>
-
               <IconButton
                 color="black"
                 onClick={() => {
@@ -151,7 +117,7 @@ export default function DrawerAppBar(props) {
                 edge="start"
                 sx={{ m: 0, p: 0.75 }}
               >
-                <ShoppingBagTwoToneIcon />
+                <ShoppingCartTwoToneIcon />
               </IconButton>
             </Box>
           </Toolbar>
@@ -174,7 +140,7 @@ export default function DrawerAppBar(props) {
             },
           }}
         >
-          {drawer}
+          {}
         </Drawer>
       </nav>
     </Box>
