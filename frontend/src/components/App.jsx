@@ -13,7 +13,6 @@ import CancelPage from "./StripeCheckoutPage/CancelPage.jsx"
 import LandingPage from "./ComingSoonPage/ComingSoonLander.jsx"
 import WithNav from "./NavbarSection/WithNav.jsx"
 import WithoutNav from "./NavbarSection/WithoutNav.jsx"
-import { WishListProvider } from "../context/LikedItemsContext.jsx"
 import { themeOptions } from "../themes/Theme.jsx"
 import { ThemeProvider } from "@mui/material/styles"
 
