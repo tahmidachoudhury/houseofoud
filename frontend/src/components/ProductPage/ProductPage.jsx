@@ -41,6 +41,20 @@ function ProductPage() {
   const numericId = Number(id)
   const [price, setPrice] = useState(6)
   const [selectedSize, setSelectedSize] = useState("3ml")
+  const [inventoryInfo, setInventoryInfo] = useState({
+    size: "3ml",
+    in_stock: true,
+  })
+  const {
+    getStagedItemQuantity,
+    getItemQuantity,
+    addTempItem,
+    decreaseTempItem,
+    decreaseCartQuantity,
+    confirmCartItem,
+  } = useShoppingCart()
+  const tempQuantity = getStagedItemQuantity(numericId)
+  const cartQuantity = getItemQuantity(numericId)
 
   useEffect(() => {
     async function fetchData() {
@@ -74,22 +88,15 @@ function ProductPage() {
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size)
+    const sizeObj = product.sizes.find((sizeObj) => sizeObj.size === size)
+    setInventoryInfo(sizeObj)
   }
 
   const handlePrice = (p) => {
     setPrice(p)
   }
 
-  const {
-    getStagedItemQuantity,
-    getItemQuantity,
-    addTempItem,
-    decreaseTempItem,
-    decreaseCartQuantity,
-    confirmCartItem,
-  } = useShoppingCart()
-  const tempQuantity = getStagedItemQuantity(numericId)
-  const cartQuantity = getItemQuantity(numericId)
+  console.log(inventoryInfo.in_stock)
 
   return (
     <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
@@ -118,6 +125,7 @@ function ProductPage() {
             <SizeButtons
               onSizeSelect={handleSizeSelect}
               onPriceSelect={handlePrice}
+              id={numericId}
             />
           </p>
           <Divider />
@@ -163,8 +171,9 @@ function ProductPage() {
               confirmCartItem(numericId, selectedSize, price)
               openCart()
             }}
+            disabled={!inventoryInfo.in_stock}
           >
-            Add to cart
+            {inventoryInfo.in_stock ? "Add to cart" : "Out of stock"}
           </AddToCart>
         </Box>
       </Box>

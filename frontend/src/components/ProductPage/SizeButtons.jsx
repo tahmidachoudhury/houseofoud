@@ -30,7 +30,7 @@ const ToggleButton = ({ isActive, onClick, children }) => {
   )
 }
 
-function ButtonGroup({ onSizeSelect, onPriceSelect }) {
+function ButtonGroup({ onSizeSelect, onPriceSelect, id }) {
   const [activeButton, setActiveButton] = useState(1)
 
   const handleClick = (buttonId, size, price) => {

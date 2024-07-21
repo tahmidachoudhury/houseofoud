@@ -14,7 +14,15 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class SizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Size
+        fields = ['size', 'in_stock']
+
+
 class ProductSerializer(serializers.ModelSerializer):
+    sizes = SizeSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'name', 'description', 'price', 'type', 'url', 'sizes']
