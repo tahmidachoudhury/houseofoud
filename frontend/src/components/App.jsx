@@ -23,7 +23,7 @@ function App() {
         <Router>
           <Routes>
             <Route element={<WithNav />}>
-              <Route path="/home" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
               <Route path="/shop" element={<ShopPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/success" element={<SuccessPage />} />
@@ -32,7 +32,7 @@ function App() {
             <Route element={<WithoutNav />}>
               <Route path="/login" element={<SignInSide />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route exact path="/" element={<LandingPage />} />
+              {/* <Route exact path="/" element={<LandingPage />} /> */}
             </Route>
           </Routes>
         </Router>
