@@ -10,31 +10,23 @@ function GroupProductSection() {
       <Grid item xs={12} p={1} lg={4} md={6}>
         <ScrollAnimation animateIn="fadeIn">
           <Collection
-            textPrimary="Looking for a stronger scent?"
-            textSecondary="Try our oil-based perfumes"
-            url="bakhour.jpg"
-            alt="oud in flower"
+            textPrimary=""
+            textSecondary="Try our lighter fragrances"
+            url="morrocan_ruby_on_wrist.jpg"
+            alt="oud on wrist"
           />
         </ScrollAnimation>
       </Grid>
 
       <Grid item xs={12} py={1} px={0.5} lg={4} md={6}>
         <ScrollAnimation animateIn="fadeIn" duration={2}>
-          <Collection
-            textPrimary="Want it sweet?"
-            textSecondary="See our range of floral fragrances"
-            url="floral.avif"
-          />
+          <Collection textPrimary="" textSecondary="" url="two_in_hand.jpg" />
         </ScrollAnimation>
       </Grid>
 
       <Grid item xs={12} p={1} lg={4} md={12}>
         <ScrollAnimation animateIn="fadeIn" duration={3}>
-          <Collection
-            textPrimary="fruity fragrances"
-            textSecondary=""
-            url="blood_orange.avif"
-          />
+          <Collection textPrimary="" textSecondary="" url="oud_on_hand.jpg" />
         </ScrollAnimation>
       </Grid>
     </Grid>

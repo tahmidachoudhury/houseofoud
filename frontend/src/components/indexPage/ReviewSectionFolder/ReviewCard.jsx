@@ -4,11 +4,21 @@ import StarIcon from "@mui/icons-material/Star"
 
 function ReviewCard(props) {
   return (
-    <Box sx={{ pr: 2, py: 4 }}>
-      <Card style={{ padding: "24px" }}>
+    <Box
+      sx={{
+        pr: 2,
+        py: 4,
+      }}
+    >
+      <Card
+        sx={{
+          p: "24px",
+          backgroundColor: `#fafafa`,
+        }}
+      >
         <CardContent style={{ minHeight: "150px" }}>
           {[...Array(props.stars)].map((index) => (
-            <StarIcon key={index} />
+            <StarIcon key={index} sx={{ color: "#daa520" }} />
           ))}
 
           <Typography

@@ -55,11 +55,17 @@ export function CartItem(props) {
         src={`../public/${item.url}`}
         style={{ width: "125px", height: "125px", objectFit: "cover" }}
       />
-      <Box flex={3}>
-        <div>{item.name}</div>
-        <div>{props.size}</div>
-        <div className="text-muted">{formatCurrency(props.price)}</div>
-        <div className="text-muted">
+      <Box
+        flex={3}
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-evenly"
+        my={1}
+      >
+        <Box>{item.name}</Box>
+        <Box>{props.size}</Box>
+        <Box>{formatCurrency(props.price)}</Box>
+        <Box>
           <Box sx={{ border: 1, display: "inline-block" }}>
             <ColorButton
               onClick={() =>
@@ -79,7 +85,7 @@ export function CartItem(props) {
               <RemoveIcon style={{ color: "black", fontSize: "0.8rem" }} />
             </ColorButton>
           </Box>
-        </div>
+        </Box>
       </Box>
       <Box display="flex" flexDirection="column" justifyContent="space-evenly">
         <Box textAlign="center">

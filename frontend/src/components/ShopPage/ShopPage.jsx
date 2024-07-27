@@ -45,11 +45,12 @@ function ShopPage() {
         }}
       >
         {data.map((product, index) => {
+          console.log(product)
           return (
             <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={index}>
               <Product
                 key={product.id}
-                link={product.id}
+                link={product.route}
                 url={product.url}
                 type={product.type}
                 name={product.name}

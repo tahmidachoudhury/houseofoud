@@ -52,14 +52,17 @@ function BestSellingProductsSection() {
         >
           {BestSellingProducts.map((product, index) => {
             return (
-              <Product
-                key={index}
-                url={product.url}
-                type={product.type}
-                name={product.name}
-                price={product.price}
-                size={product.size}
-              />
+              <Box sx={{ p: 1 }}>
+                <Product
+                  key={index}
+                  link={product.link}
+                  url={product.url}
+                  type={product.type}
+                  name={product.name}
+                  price={product.price}
+                  size={product.size}
+                />
+              </Box>
             )
           })}
         </Carousel>

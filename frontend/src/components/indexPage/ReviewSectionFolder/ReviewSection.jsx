@@ -29,37 +29,10 @@ function ReviewSection() {
     fetchData()
   }, [])
 
-  const responsive = {
-    desktop: {
-      breakpoint: {
-        max: 3000,
-        min: 1024,
-      },
-      items: 3,
-      partialVisibilityGutter: 40,
-    },
-    mobile: {
-      breakpoint: {
-        max: 464,
-        min: 0,
-      },
-      items: 1,
-      partialVisibilityGutter: 30,
-    },
-    tablet: {
-      breakpoint: {
-        max: 1024,
-        min: 464,
-      },
-      items: 2,
-      partialVisibilityGutter: 30,
-    },
-  }
-
   const main = {
     padding: "48px 0",
     backgroundImage:
-      'url("https://www.transparenttextures.com/patterns/brushed-alum.png")',
+      'url("https://www.transparenttextures.com/patterns/axiom-pattern.png")',
     margin: "0",
   }
 

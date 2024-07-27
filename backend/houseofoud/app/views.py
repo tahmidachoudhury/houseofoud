@@ -148,14 +148,14 @@ def stripe_webhook(request):
             message=f"Thanks for your purchase. Here are the products that you ordered \n{
                 parse_cart_data(cart)}\nTotal: {total}",
             recipient_list=[customer_email],
-            from_email="test@test.com"
+            from_email="info@houseofoud.uk"
         )
         send_mail(
             subject=f"Order number {order.id}",
             message=f"Customer order\n{parse_cart_data(cart)}\n\nCustomer address \nCity: {address_details['city']}\nCountry: {address_details['country']}\nAddress Line 1: {
                 address_details['line1']}\nAddress Line 2: {address_details['line2']}\nPost Code: {address_details['postal_code']}\nCustomer Email: {customer_email}",
             recipient_list=["ikram30002@gmail.com"],
-            from_email="test@test.com"
+            from_email="info@houseofoud.uk"
         )
 
     return HttpResponse(status=200)
