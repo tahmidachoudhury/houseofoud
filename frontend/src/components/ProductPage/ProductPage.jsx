@@ -13,33 +13,34 @@ import SizeButtons from "./SizeButtons"
 const ColorButton = styled(Button)({
   color: "white",
   borderRadius: 0,
-  backgroundColor: "white",
+  backgroundColor: "inherit",
   boxShadow: "none",
   "&:hover": {
     boxShadow: "none",
-    backgroundColor: "white",
+    backgroundColor: "inherit",
   },
+  width: "3rem",
   padding: 0,
 })
 
-const AddToCart = styled(Button)({
+const AddToCart = styled(Button)(({ inStock }) => ({
   width: "100%",
   height: "100%",
   padding: "8px",
-  backgroundColor: "#990000",
+  backgroundColor: inStock ? "#990000" : "#858585",
   color: "white",
   "&:hover": {
     backgroundColor: "#660000", // Darker maroon red on hover
   },
-})
+}))
 
 function ProductPage() {
   const { openCart } = useShoppingCart()
-  const [data, setData] = useState([])
+  const [product, setProduct] = useState([])
   const { id } = useParams()
-  const numericId = Number(id)
   const [price, setPrice] = useState(6)
-  const [selectedSize, setSelectedSize] = useState("3ml")
+  const [selectedSize, setSelectedSize] = useState("")
+  const [inventoryInfo, setInventoryInfo] = useState("")
 
   useEffect(() => {
     async function fetchData() {
@@ -52,7 +53,14 @@ function ProductPage() {
         }
 
         const result = await response.json()
-        setData(result)
+
+        const APIproduct = result.find((item) => item.route === id)
+
+        setProduct(APIproduct)
+
+        setInventoryInfo(APIproduct.sizes[0]) // Set initial selected size on screen
+
+        setSelectedSize(APIproduct.sizes[0]["size"])
       } catch (error) {
         console.error("Error fetching data:", error)
         setError(error.message)
@@ -61,7 +69,8 @@ function ProductPage() {
 
     fetchData()
   }, [])
-  const product = data.find((item) => item.id === numericId)
+
+  const numericId = product.id
 
   if (!product) {
     return (
@@ -70,26 +79,26 @@ function ProductPage() {
       </Box>
     )
   }
-
-  const handleSizeSelect = (size) => {
-    setSelectedSize(size)
-  }
-
-  const handlePrice = (p) => {
-    setPrice(p)
-  }
-
   const {
     getStagedItemQuantity,
     getItemQuantity,
     addTempItem,
     decreaseTempItem,
     decreaseCartQuantity,
-    increaseCartQuantity,
     confirmCartItem,
   } = useShoppingCart()
   const tempQuantity = getStagedItemQuantity(numericId)
   const cartQuantity = getItemQuantity(numericId)
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size)
+    const sizeObj = product.sizes.find((sizeObj) => sizeObj.size === size)
+    setInventoryInfo(sizeObj)
+  }
+
+  const handlePrice = (p) => {
+    setPrice(p)
+  }
 
   return (
     <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
@@ -105,7 +114,7 @@ function ProductPage() {
           borderRadius: { xs: "2.2rem", md: 0 },
         }}
       />
-      <Box sx={{ padding: "10% 10%" }}>
+      <Box sx={{ padding: "10% 10%", minWidth: "50vw" }}>
         <Box>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
@@ -118,6 +127,7 @@ function ProductPage() {
             <SizeButtons
               onSizeSelect={handleSizeSelect}
               onPriceSelect={handlePrice}
+              id={numericId}
             />
           </p>
           <Divider />
@@ -126,8 +136,8 @@ function ProductPage() {
           sx={{
             border: 1,
             display: "inline-block",
-            borderRadius: "2rem",
-            py: 1,
+            borderRadius: "1rem",
+            py: 0.4,
             my: 2,
             overflow: "hidden",
           }}
@@ -149,7 +159,12 @@ function ProductPage() {
               decreaseCartQuantity(numericId, price)
             }}
           >
-            <RemoveIcon style={{ color: "black", fontSize: "0.7rem" }} />
+            <RemoveIcon
+              style={{
+                color: "black",
+                fontSize: "0.7rem",
+              }}
+            />
           </ColorButton>
         </Box>
         <Box border={1} textAlign="center" borderRadius={1.8}>
@@ -158,8 +173,10 @@ function ProductPage() {
               confirmCartItem(numericId, selectedSize, price)
               openCart()
             }}
+            disabled={!inventoryInfo.in_stock}
+            inStock={inventoryInfo.in_stock}
           >
-            Add to cart
+            {inventoryInfo.in_stock ? "Add to cart" : "Out of stock"}
           </AddToCart>
         </Box>
       </Box>

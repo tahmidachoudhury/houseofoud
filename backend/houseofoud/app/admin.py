@@ -13,8 +13,14 @@ class ProductInfo(admin.ModelAdmin):
     list_display = ("product", "size", "unit_amount")
 
 
+class InventoryInfo(admin.ModelAdmin):
+    list_display = ("product", "size", "in_stock")
+
+
 admin.site.register(User, UserInfo)
 
 admin.site.register(Product)
 
 admin.site.register(Price, ProductInfo)
+
+admin.site.register(Size, InventoryInfo)

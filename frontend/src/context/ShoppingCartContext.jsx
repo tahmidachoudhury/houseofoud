@@ -165,6 +165,7 @@ export function ShoppingCartProvider({ children }) {
         removeFromCart,
         openCart,
         closeCart,
+        setCartItems,
         cartItems,
         cartQuantity,
       }}

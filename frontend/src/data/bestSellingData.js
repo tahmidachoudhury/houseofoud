@@ -1,34 +1,36 @@
 const BestSellingProducts = [
   {
-    type: "Eau De Parfum",
+    type: "Oil",
     name: "Tropical Sunset",
     price: "From £6.00",
-    url: "tropical_sunset_ground.jpg",
-    size: "1 size",
+    url: "tropical_sunset.jpeg",
+    link: "tropical-sunset",
+    size: "4 sizes",
   },
   {
     type: "Oil",
     name: "Ambre Nights",
     price: "From £6.00",
-    url: "ambre_nights_flower.jpeg",
-    size: "2 sizes",
+    url: "ambre_nights.jpeg",
+    link: "ambre-nights",
+    size: "4 sizes",
   },
+  // {
+  //   type: "Oil",
+  //   name: "Pure Gold",
+  //   price: "From £6.00",
+  //   url: "pure_gold_table.jpg",
+  //   link: "pure-gold",
+  //   size: "4 sizes",
+  // },
   {
     type: "Oil",
-    name: "Pure Gold",
-    price: "From £6.00",
-    url: "pure_gold_table.jpg",
-    size: "2 sizes",
-  },
-  {
-    type: "Eau De Toilette",
     name: "Pink Bliss",
     price: "From £6.00",
-    url: "pink_bliss_flower.jpg",
-    size: "1 size",
+    url: "pink_bliss.jpeg",
+    link: "pink-bliss",
+    size: "4 sizes",
   },
 ]
-  
 
-
-export default BestSellingProducts;
+export default BestSellingProducts
