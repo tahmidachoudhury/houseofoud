@@ -84,7 +84,7 @@ export default function DrawerAppBar(props) {
               </Box>
 
               <Button sx={{ width: "fit-content" }}>
-                <Link to="/home">
+                <Link to="/">
                   <Typography variant="h6" component="div">
                     House of oud
                   </Typography>
