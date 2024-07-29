@@ -13,7 +13,10 @@ import time
 
 # Create your views here.
 
-
+# if settings.DEBUG:
+#     stripe.api_key = settings.STRIPE_TEST_KEY
+# else:
+#     stripe.api_key = settings.STRIPE_API_KEY
 # test-----------------------------------------------------------------------
 stripe.api_key = settings.STRIPE_TEST_KEY
 
@@ -28,8 +31,6 @@ def append_cart_to_line_items(cart):
     return line_items
 
 # production---------------------------------------------------------------------------
-
-# stripe.api_key = settings.STRIPE_API_KEY
 
 
 # def append_cart_to_line_items(cart):
@@ -51,6 +52,7 @@ def append_cart_to_line_items(cart):
 #                   item['size']} does not exist.")
 
 #     return line_items
+
 
 def parse_cart_data(cart):
     # [{'price': 'price_1PRFH600JqWikrEqZZAiRgtZ', 'quantity': 1}, {'price': 'price_1PRFH600JqWikrEqZZAiRgtZ', 'quantity': 1}]
@@ -101,6 +103,7 @@ def create_checkout_session(request):
 def stripe_webhook(request):
     # development
     stripe.api_key = settings.STRIPE_TEST_KEY
+
     time.sleep(10)
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
@@ -129,7 +132,6 @@ def stripe_webhook(request):
         address_details = session['customer_details']['address']
         metadata = session['metadata']['checkout_receipt']
         cart = json.loads(metadata)
-        current_datetime = datetime.now()
 
         total = f"£{amount_total / 100:.2f}"
 
@@ -145,17 +147,31 @@ def stripe_webhook(request):
 
         send_mail(
             subject=f"Your Order ID is #{order.id}",
-            message=f"Thanks for your purchase. Here are the products that you ordered \n{
-                parse_cart_data(cart)}\nTotal: {total}",
+            message=f"Thanks for your purchase. Here are the products that you ordered \n\n{
+                parse_cart_data(cart)}\n\nTotal: {total}",
             recipient_list=[customer_email],
-            from_email="info@houseofoud.uk"
+            from_email="sales@houseofoud.uk"
         )
         send_mail(
             subject=f"Order number {order.id}",
             message=f"Customer order\n{parse_cart_data(cart)}\n\nCustomer address \nCity: {address_details['city']}\nCountry: {address_details['country']}\nAddress Line 1: {
                 address_details['line1']}\nAddress Line 2: {address_details['line2']}\nPost Code: {address_details['postal_code']}\nCustomer Email: {customer_email}",
             recipient_list=["ikram30002@gmail.com"],
-            from_email="info@houseofoud.uk"
+            from_email="sales@houseofoud.uk"
         )
 
     return HttpResponse(status=200)
+
+
+def test_email(request):
+    try:
+        send_mail(
+            subject="Test Email",
+            message="This is a test email.",
+            # Replace with your email address
+            recipient_list=["tahmidachoudhury@outlook.com"],
+            from_email="sales@houseofoud.uk"
+        )
+        return HttpResponse("Test email sent successfully.")
+    except Exception as e:
+        return HttpResponse(f"Failed to send test email: {e}", status=500)

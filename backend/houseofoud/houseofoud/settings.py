@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import environ
+
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,17 +32,27 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 TEST_ID = 'price_1PRFH600JqWikrEqZZAiRgtZ'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STRIPE_API_KEY = env('STRIPE_API_KEY')
 
 STRIPE_TEST_KEY = env('STRIPE_TEST_KEY')
 
 STRIPE_WEBHOOK = env('WEBHOOK_SIGNING_SECRET')
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.hostinger.com'
+    EMAIL_PORT = '587'
+    EMAIL_USE_TLS = True
+    EMAIL_USE_SSL = False
+    EMAIL_HOST_USER = 'sales@houseofoud.uk'
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 
 
 # Application definition
