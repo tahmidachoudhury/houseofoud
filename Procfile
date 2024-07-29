@@ -1,1 +1,1 @@
-web: gunicorn houseofoud.wsgi
+web: cd backend/houseofoud && gunicorn houseofoud.wsgi 
