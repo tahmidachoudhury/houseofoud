@@ -22,6 +22,7 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('webhooks/stripe/', stripe_webhook, name='stripe-webhook'),
+    path('test-email/', test_email, name='test-email'),
     path('', include('api.urls')),
     path('create-checkout-session/', create_checkout_session,
          name='create-checkout-session'),
