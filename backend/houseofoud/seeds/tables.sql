@@ -31,7 +31,7 @@ INSERT INTO app_review (stars, subject, content, name) VALUES (5, 'So good that 
 INSERT INTO app_review (stars, subject, content, name) VALUES (5, 'Premium.', 'The only place where I''ll be getting fragrances from now.', 'Abu Imran K.');
 
 
-INSERT INTO app_user (username, email, password) VALUES ('tahmid', 'tahmid@tahmid.com', 'mashallah10');
+INSERT INTO app_user (username, email, password) VALUES ('tahmid', 'tahmid@tahmid.com', 'password');
 INSERT INTO app_user (username, email, password) VALUES ('new_user', 'newuser@gmail.com', 'hello123');  
 
 
