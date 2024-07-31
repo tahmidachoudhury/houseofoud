@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import environ
+import dj_database_url
 
 import os
 
@@ -74,7 +75,7 @@ CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
 
 CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
 
-ALLOWED_HOSTS = ['houseofoud-1a4785b1cc63.herokuapp.com']
+ALLOWED_HOSTS = ['houseofoud.herokuapp.com']
 
 WSGI_APPLICATION = 'houseofoud.wsgi.application'
 
@@ -118,12 +119,7 @@ WSGI_APPLICATION = 'houseofoud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'default': dj_database_url.config(conn_max_age=600)
     }
 }
 
