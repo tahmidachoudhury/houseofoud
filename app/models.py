@@ -62,7 +62,7 @@ class Orders(models.Model):
     customer_email = models.CharField(max_length=255)
     stripe_checkout_id = models.CharField(max_length=255)
     created_at = models.DateTimeField(default=timezone.now)
-    cart_info = models.CharField()
+    cart_info = models.TextField()
     amount_total = models.CharField(max_length=10)
     order_id = models.IntegerField(default=None)
 

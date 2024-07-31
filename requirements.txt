@@ -19,3 +19,5 @@ urllib3==2.2.1
 whitenoise==6.7.0
 stripe==9.10.0
 django-heroku==0.3.1
+dj-database-url
+
