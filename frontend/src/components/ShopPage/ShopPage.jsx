@@ -45,7 +45,6 @@ function ShopPage() {
         }}
       >
         {data.map((product, index) => {
-          console.log(product)
           return (
             <Box gridColumn={{ xs: "span 1", sm: "auto" }} key={index}>
               <Product

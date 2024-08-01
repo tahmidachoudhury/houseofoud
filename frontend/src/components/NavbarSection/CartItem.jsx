@@ -52,7 +52,7 @@ export function CartItem(props) {
   return (
     <Stack direction="horizontal" display="flex" flex={1} gap={2}>
       <img
-        src={`../public/${item.url}`}
+        src={`/${item.url}`}
         style={{ width: "125px", height: "125px", objectFit: "cover" }}
       />
       <Box

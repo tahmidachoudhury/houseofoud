@@ -108,7 +108,7 @@ function ProductPage() {
     >
       <Box
         component="img"
-        src={`../../../../public/${product.url}`}
+        src={`/${product.url}`}
         sx={{
           width: { xs: "100vw", md: "50vw" },
           px: { xs: "3%", md: 0 },
