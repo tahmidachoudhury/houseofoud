@@ -71,11 +71,11 @@ INSTALLED_APPS = [
 ]
 
 
-CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
+CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173', 'houseofoud-1a4785b1cc63.herokuapp.com']
 
-CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
+CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173', 'houseofoud-1a4785b1cc63.herokuapp.com']
 
-ALLOWED_HOSTS = ['houseofoud.herokuapp.com', 'houseofoud.uk', '127.0.0.1']
+ALLOWED_HOSTS = ['houseofoud-1a4785b1cc63.herokuapp.com', 'houseofoud.uk', '127.0.0.1']
 
 WSGI_APPLICATION = 'houseofoud.wsgi.application'
 
