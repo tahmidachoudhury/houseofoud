@@ -75,7 +75,7 @@ CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
 
 CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173']
 
-ALLOWED_HOSTS = ['houseofoud.herokuapp.com', 'houseofoud.uk']
+ALLOWED_HOSTS = ['houseofoud.herokuapp.com', 'houseofoud.uk', '127.0.0.1']
 
 WSGI_APPLICATION = 'houseofoud.wsgi.application'
 
