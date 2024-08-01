@@ -102,7 +102,7 @@ def create_checkout_session(request):
 @csrf_exempt
 def stripe_webhook(request):
     # development
-    stripe.api_key = settings.STRIPE_TEST_KEY
+    stripe.api_key = settings.STRIPE_API_KEY
 
     time.sleep(10)
     payload = request.body
@@ -124,7 +124,6 @@ def stripe_webhook(request):
     ):
         session = event['data']['object']
 
-        print(session)
         amount_total = session['amount_total']
         order_id = session['created']
         session_id = session.get('id', None)
