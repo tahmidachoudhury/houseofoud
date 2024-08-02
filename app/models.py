@@ -19,7 +19,7 @@ class User(models.Model):
 
 class Review(models.Model):
     stars = models.IntegerField()
-    subject = models.CharField(max_length=30)
+    subject = models.CharField(max_length=50)
     content = models.CharField(max_length=150)
     name = models.CharField(max_length=30)
 
