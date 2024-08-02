@@ -13,12 +13,12 @@ import time
 
 # Create your views here.
 
-# if settings.DEBUG:
-#     stripe.api_key = settings.STRIPE_TEST_KEY
-# else:
-#     stripe.api_key = settings.STRIPE_API_KEY
+if settings.DEBUG:
+    stripe.api_key = settings.STRIPE_TEST_KEY
+else:
+    stripe.api_key = settings.STRIPE_API_KEY
 # test-----------------------------------------------------------------------
-stripe.api_key = settings.STRIPE_TEST_KEY
+
 
 
 def append_cart_to_line_items(cart):
