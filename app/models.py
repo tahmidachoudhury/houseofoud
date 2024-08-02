@@ -20,7 +20,7 @@ class User(models.Model):
 class Review(models.Model):
     stars = models.IntegerField()
     subject = models.CharField(max_length=30)
-    content = models.CharField(max_length=100)
+    content = models.CharField(max_length=150)
     name = models.CharField(max_length=30)
 
     def __str__(self):
