@@ -71,9 +71,9 @@ INSTALLED_APPS = [
 ]
 
 
-CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173', 'houseofoud-1a4785b1cc63.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173', 'https://houseofoud-1a4785b1cc63.herokuapp.com']
 
-CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173', 'houseofoud-1a4785b1cc63.herokuapp.com']
+CORS_ALLOWED_ORIGINS = ['https://houseofoud.uk', 'http://localhost:5173', 'https://houseofoud-1a4785b1cc63.herokuapp.com']
 
 ALLOWED_HOSTS = ['houseofoud-1a4785b1cc63.herokuapp.com', 'houseofoud.uk', '127.0.0.1']
 
@@ -122,7 +122,8 @@ DATABASES = {
 }
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
