@@ -118,7 +118,7 @@ function ProductPage() {
           borderRadius: { xs: "2.2rem", md: 0 },
         }}
       />
-      <Box sx={{ padding: "10% 10%", width: "50vw" }}>
+      <Box sx={{ padding: "10% 10%", width: { xs: "100vw", md: "50vw" } }}>
         <Box>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
