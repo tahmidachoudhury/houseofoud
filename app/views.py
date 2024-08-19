@@ -17,6 +17,8 @@ if settings.DEBUG:
     stripe.api_key = settings.STRIPE_TEST_KEY
 else:
     stripe.api_key = settings.STRIPE_API_KEY
+
+
 # test-----------------------------------------------------------------------
 
 
@@ -29,6 +31,32 @@ else:
 #             'quantity': item['quantity'],
 #         })
 #     return line_items
+<<<<<<< HEAD
+
+# production---------------------------------------------------------------------------
+
+
+def append_cart_to_line_items(cart):
+    line_items = []
+    for item in cart:
+        try:
+            product = Product.objects.get(id=item['id'])
+
+            price = Price.objects.get(product=product, size=item['size'])
+
+            line_items.append({
+                'price': price.stripe_price_id,
+                'quantity': item['quantity'],
+            })
+        except Product.DoesNotExist:
+            print(f"Product with id {item['id']} does not exist.")
+        except Price.DoesNotExist:
+            print(f"Price for product {item['id']} and size {
+                  item['size']} does not exist.")
+
+    return line_items
+=======
+>>>>>>> 0cf6afcda015469fea843f2c5792a2c4f874853b
 
 # production---------------------------------------------------------------------------
 

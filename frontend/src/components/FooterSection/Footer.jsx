@@ -116,13 +116,13 @@ export default function Footer() {
           </Typography>
           <Typography>Orders, Billing, Shipping, General Questions</Typography>
           <Typography>
-            <a title="test@test.com" href="mailto:test@test.com">
+            <a title="test@test.com" href="mailto:info@houseofoud.uk">
               info@houseofoud.uk
             </a>
           </Typography>
           <Typography>
             Office:{" "}
-            <a title="+44 7387 151292" href="tel:+44 7387 151292">
+            <a title="+44 7387 151292" href="tel:+447387151292">
               +44 7387 151292
             </a>
           </Typography>
